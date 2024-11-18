@@ -531,3 +531,10 @@ def add_employee_login(username, password):
 if __name__ == '__main__':
     init_db()
     app.run(debug=True)
+
+from os import environ
+
+# At the bottom of app1.py, change:
+if __name__ == '__main__':
+    port = int(environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port)
