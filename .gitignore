@@ -1,0 +1,37 @@
+# Python bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Flask environment
+venv/
+env/
+.env
+.flaskenv
+
+# Database
+database/*.db
+*.db
+*.sqlite3
+
+# Uploads and static files
+static/uploads/*
+!static/uploads/.gitkeep
+
+# IDE specific files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS specific files
+.DS_Store
+Thumbs.db
+
+# Log files
+*.log
+
+# Environment variables
+.env
+.env.local
+.env.*.local

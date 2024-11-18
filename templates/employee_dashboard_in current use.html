@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <div class="profile">
+                <img src="{{ url_for('static', filename='uploads/' + employee['profile_photo_path']) }}" alt="Profile Picture" id="profile-picture">
+                <h2>{{ employee['name'] }}</h2>
+                <p>Employee</p>
+            </div>
+            <nav class="nav">
+                <a href="update-profile.html" class="nav-link"><i class="fas fa-user-edit"></i> Update Profile</a>
+                <a href="mark-attendance.html" class="nav-link"><i class="fas fa-calendar-check"></i> Mark Attendance</a>
+                <a href="view-attendance.html" class="nav-link"><i class="fas fa-calendar-alt"></i> View Attendance</a>
+                <a href="request-leave.html" class="nav-link"><i class="fas fa-envelope-open-text"></i> Request Leave</a>
+                <a href="{{ url_for('logout') }}" class="nav-link"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            </nav>
+        </aside>
+        <main class="main-content">
+            <header class="hero">
+                <h1>Employee Dashboard</h1>
+                <p>Manage your profile, attendance, and leave requests.</p>
+            </header>
+        </main>
+    </div>
+    <script>
+        function previewProfilePicture(event) {
+            const reader = new FileReader();
+            reader.onload = function() {
+                const output = document.getElementById('profile-picture');
+                output.src = reader.result;
+            }
+            reader.readAsDataURL(event.target.files[0]);
+        }
+    </script>
+</body>
+</html>

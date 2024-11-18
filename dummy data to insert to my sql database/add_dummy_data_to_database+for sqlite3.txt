@@ -1,0 +1,56 @@
+
+
+# Insert dummy data into the employees table
+
+INSERT INTO employees (name, dob, gender, address, state, pincode, phone, alt_phone, email, pan, aadhar, employee_code, aadhar_path, pan_path, bank_passbook_path, profile_photo_path, bank_name, bank, account, ifsc, uan, experience, company_name, designation, function_performed, period_of_work, reason_for_leaving) 
+VALUES 
+('Amit Kumar', '1985-01-15', 'Male', '1234, MG Road, Bangalore', 'Karnataka', '560001', '9876543210', '9123456780', 'amit.kumar@example.com', 'ABCDE1234F', '123456789012', 'E001', 'path/to/aadhar/amit.jpg', 'path/to/pan/amit.jpg', 'path/to/bankpassbook/amit.jpg', 'path/to/profilephoto/amit.jpg', 'SBI', 'SBI0000123', '1234567890', 'SBIN0000123', '100001', '10 years', 'ABC Pvt Ltd', 'Manager', 'Managing projects', '2010-2020', 'Better opportunity'),
+    ('Sneha Roy', '1990-05-21', 'Female', '56, Park Street, Kolkata', 'West Bengal', '700016', '9876501234', '9123450987', 'sneha.roy@example.com', 'FGHIJ5678K', '234567890123', 'E002', 'path/to/aadhar/sneha.jpg', 'path/to/pan/sneha.jpg', 'path/to/bankpassbook/sneha.jpg', 'path/to/profilephoto/sneha.jpg', 'HDFC', 'HDFC0000456', '2345678901', 'HDFC0000456', '100002', '8 years', 'XYZ Ltd', 'Senior Developer', 'Software development', '2012-2020', 'Relocation'),
+    ('Ravi Verma', '1988-11-30', 'Male', '78, Nehru Place, Delhi', 'Delhi', '110019', '9876123450', '9123456781', 'ravi.verma@example.com', 'KLMNO1234P', '345678901234', 'E003', 'path/to/aadhar/ravi.jpg', 'path/to/pan/ravi.jpg', 'path/to/bankpassbook/ravi.jpg', 'path/to/profilephoto/ravi.jpg', 'ICICI', 'ICICI0000678', '3456789012', 'ICIC0000678', '100003', '7 years', 'DEF Pvt Ltd', 'Accountant', 'Accounting and finance', '2011-2018', 'Personal reasons'),
+    ('Priya Singh', '1992-07-14', 'Female', '45, Brigade Road, Bangalore', 'Karnataka', '560025', '9876543120', '9123456782', 'priya.singh@example.com', 'PQRST6789U', '456789012345', 'E004', 'path/to/aadhar/priya.jpg', 'path/to/pan/priya.jpg', 'path/to/bankpassbook/priya.jpg', 'path/to/profilephoto/priya.jpg', 'Axis', 'AXIS0000890', '4567890123', 'AXIS0000890', '100004', '5 years', 'GHI Pvt Ltd', 'HR Manager', 'Human resources management', '2015-2020', 'Career change'),
+    ('Rahul Sharma', '1987-09-10', 'Male', '12, Anna Salai, Chennai', 'Tamil Nadu', '600002', '9876543211', '9123456783', 'rahul.sharma@example.com', 'UVWXY2345Z', '567890123456', 'E005', 'path/to/aadhar/rahul.jpg', 'path/to/pan/rahul.jpg', 'path/to/bankpassbook/rahul.jpg', 'path/to/profilephoto/rahul.jpg', 'Kotak', 'KKBK0001234', '5678901234', 'KKBK0001234', '100005', '9 years', 'JKL Ltd', 'Team Lead', 'Project management', '2011-2020', 'Better opportunity'),
+    ('Anjali Mehta', '1995-03-22', 'Female', '89, Marine Drive, Mumbai', 'Maharashtra', '400020', '9876543212', '9123456784', 'anjali.mehta@example.com', 'ABCDE6789F', '678901234567', 'E006', 'path/to/aadhar/anjali.jpg', 'path/to/pan/anjali.jpg', 'path/to/bankpassbook/anjali.jpg', 'path/to/profilephoto/anjali.jpg', 'Yes Bank', 'YESB0005678', '6789012345', 'YESB0005678', '100006', '4 years', 'MNO Ltd', 'Marketing Executive', 'Marketing and sales', '2016-2020', 'Higher studies'),
+    ('Vikram Gupta', '1989-08-05', 'Male', '34, Connaught Place, Delhi', 'Delhi', '110001', '9876543213', '9123456785', 'vikram.gupta@example.com', 'FGHIJ1234K', '789012345678', 'E007', 'path/to/aadhar/vikram.jpg', 'path/to/pan/vikram.jpg', 'path/to/bankpassbook/vikram.jpg', 'path/to/profilephoto/vikram.jpg', 'IndusInd', 'INDB0002345', '7890123456', 'INDB0002345', '100007', '6 years', 'PQR Pvt Ltd', 'Sales Manager', 'Sales and business development', '2014-2020', 'Career change'),
+    ('Meera Rao', '1993-12-10', 'Female', '67, JP Nagar, Bangalore', 'Karnataka', '560078', '9876543214', '9123456786', 'meera.rao@example.com', 'HIJKL2345M', '890123456789', 'E008', 'path/to/aadhar/meera.jpg', 'path/to/pan/meera.jpg', 'path/to/bankpassbook/meera.jpg', 'path/to/profilephoto/meera.jpg', 'Union Bank', 'UBIN0003456', '8901234567', 'UBIN0003456', '100008', '3 years', 'STU Pvt Ltd', 'Software Engineer', 'Software development', '2017-2020', 'Relocation'),
+    ('Rakesh Patil', '1984-06-18', 'Male', '23, FC Road, Pune', 'Maharashtra', '411004', '9876543215', '9123456787', 'rakesh.patil@example.com', 'JKLMN3456O', '901234567890', 'E009', 'path/to/aadhar/rakesh.jpg', 'path/to/pan/rakesh.jpg', 'path/to/bankpassbook/rakesh.jpg', 'path/to/profilephoto/rakesh.jpg', 'Bank of Baroda', 'BARB0004567', '9012345678', 'BARB0004567', '100009', '12 years', 'VWX Pvt Ltd', 'Operations Manager', 'Operations management', '2008-2020', 'Retirement'),
+    ('Suman Das', '1991-11-07', 'Female', '90, Sector 18, Noida', 'Uttar Pradesh', '201301', '9876543216', '9123456788', 'suman.das@example.com', 'NOPQR4567S', '012345678901', 'E010', 'path/to/aadhar/suman.jpg', 'path/to/pan/suman.jpg', 'path/to/bankpassbook/suman.jpg', 'path/to/profilephoto/suman.jpg', 'Punjab National Bank', 'PUNB0006789', '0123456789', 'PUNB0006789', '100010', '5 years', 'YZA Ltd', 'Data Analyst', 'Data analysis and reporting', '2015-2020', 'Personal reasons');
+
+
+# Insert dummy data into the attendance table
+INSERT INTO attendance (employee_id, date, time, status, reason_for_absence_halfday)
+VALUES
+(1, '2024-05-01', '09:00:00', 'Present', NULL),
+(2, '2024-05-01', '09:15:00', 'Present', NULL),
+(3, '2024-05-01', '09:05:00', 'Present', NULL),
+(4, '2024-05-01', '08:50:00', 'Present', NULL),
+(5, '2024-05-01', '09:10:00', 'Present', NULL),
+(6, '2024-05-01', '09:20:00', 'Present', NULL),
+(7, '2024-05-01', '09:00:00', 'Present', NULL),
+(8, '2024-05-01', '09:15:00', 'Present', NULL),
+(9, '2024-05-01', '09:30:00', 'Absent', 'Sick leave'),
+(10, '2024-05-01', '09:00:00', 'Present', NULL),
+(1, '2024-05-02', '09:00:00', 'Present', NULL),
+(2, '2024-05-02', '09:15:00', 'Present', NULL),
+(3, '2024-05-02', '09:05:00', 'Present', NULL),
+(4, '2024-05-02', '08:50:00', 'Present', NULL),
+(5, '2024-05-02', '09:10:00', 'Present', NULL),
+(6, '2024-05-02', '09:20:00', 'Present', NULL),
+(7, '2024-05-02', '09:00:00', 'Present', NULL),
+(8, '2024-05-02', '09:15:00', 'Present', NULL),
+(9, '2024-05-02', '09:30:00', 'Present', NULL),
+(10, '2024-05-02', '09:00:00', 'Present', NULL);
+
+# Insert dummy data into the leave_requests table
+
+INSERT INTO leave_requests (employee_id, start_date, end_date, reason, status)
+VALUES
+(1, '2024-05-10', '2024-05-12', 'Family function', 'Approved'),
+    (2, '2024-06-01', '2024-06-05', 'Medical leave', 'Pending'),
+    (3, '2024-06-10', '2024-06-12', 'Vacation', 'Approved'),
+    (4, '2024-07-01', '2024-07-03', 'Personal reasons', 'Rejected'),
+    (5, '2024-07-15', '2024-07-20', 'Family function', 'Pending'),
+    (6, '2024-08-01', '2024-08-05', 'Medical leave', 'Approved'),
+    (7, '2024-08-10', '2024-08-12', 'Vacation', 'Pending'),
+    (8, '2024-09-01', '2024-09-03', 'Personal reasons', 'Approved'),
+    (9, '2024-09-15', '2024-09-20', 'Family function', 'Pending'),
+    (10, '2024-10-01', '2024-10-05', 'Medical leave', 'Rejected');

@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payslip</title>
+  <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    @media print {
+      button {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body class="bg-gray-50">
+  <div class="container mx-auto px-4 py-8">
+    <div class="text-center mb-8">
+      <img src="/static/css/images/logo.png" alt="Company Logo" class="mx-auto mb-4" style="max-height: 200px;">
+      <h1 class="text-3xl font-bold">PROCOR COMPLIANCE SOLUTIONS LLP</h1>
+      <h1 class="text-2xl font-medium">Pay Slip for February-2024</h1>
+    </div>
+    <div class="bg-white p-6 rounded-lg shadow-md">
+      <div class="grid grid-cols-2 gap-4 mb-8">
+        <!-- Employee Details -->
+        <table class="min-w-full bg-white border rounded">
+          <thead>
+            <tr>
+              <th colspan="2" class="text-left border px-4 py-2">Employee Details</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="border px-4 py-2">Employee Code</td>
+              <td class="border px-4 py-2">{{ employee.Employee_Code }}</td>
+            </tr>
+            <tr>
+              <td class="border px-4 py-2">Employee Name</td>
+              <td class="border px-4 py-2">{{ employee.Employee_Name }}</td>
+            </tr>
+            <tr>
+              <td class="border px-4 py-2">Designation</td>
+              <td class="border px-4 py-2">{{ employee.Designation }}</td>
+            </tr>
+            <tr>
+              <td class="border px-4 py-2">Department</td>
+              <td class="border px-4 py-2">{{ employee.Department }}</td>
+            </tr>
+            <tr>
+              <td class="border px-4 py-2">Location</td>
+              <td class="border px-4 py-2">{{ employee.Location }}</td>
+            </tr>
+            <tr>
+              <td class="border px-4 py-2">Contact</td>
+              <td class="border px-4 py-2">{{ employee.Contact }}</td>
+            </tr>
+            <tr>
+              <td class="border px-4 py-2">UAN Number</td>
+              <td class="border px-4 py-2">{{ employee.UAN_Number }}</td>
+            </tr>
+            <tr>
+              <td class="border px-4 py-2">AADHAR</td>
+              <td class="border px-4 py-2">{{ employee.AADHAR }}</td>
+            </tr>
+          </tbody>
+        </table>
+        
+        <!-- Account Details -->
+        <table class="min-w-full bg-white border rounded">
+          <thead>
+            <tr>
+              <th colspan="2" class="text-left border px-4 py-2">Account Details</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="border px-4 py-2">Bank Account</td>
+              <td class="border px-4 py-2">{{ employee.Bank_Account }}</td>
+            </tr>
+            <tr>
+              <td class="border px-4 py-2">IFSC</td>
+              <td class="border px-4 py-2">{{ employee.IFSC }}</td>
+            </tr>
+            <tr>
+              <td class="border px-4 py-2">D.O.J</td>
+              <td class="border px-4 py-2">{{ employee.D_O_J }}</td>
+            </tr>
+            <tr>
+              <td class="border px-4 py-2">State</td>
+              <td class="border px-4 py-2">{{ employee.State }}</td>
+            </tr>
+            <tr>
+              <td class="border px-4 py-2">E-Mail</td>
+              <td class="border px-4 py-2">{{ employee.E_Mail }}</td>
+            </tr>
+            <tr>
+              <td class="border px-4 py-2">PAN</td>
+              <td class="border px-4 py-2">{{ employee.PAN }}</td>
+            </tr>
+            <tr>
+              <td class="border px-4 py-2">Name as per Bank</td>
+              <td class="border px-4 py-2">{{ employee.Name_as_per_Bank }}</td>
+            </tr>
+          </tbody>
+        </table>
+        
+        <!-- Earnings -->
+        <table class="min-w-full bg-white border rounded">
+          <thead>
+            <tr>
+              <th colspan="2" class="text-left border px-4 py-2">Earnings</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="border px-4 py-2">Basic Salary</td>
+              <td class="border px-4 py-2 text-right">₹ {{ payroll.Basic }}</td>
+            </tr>
+            <tr>
+              <td class="border px-4 py-2">House Rent Allowance (HRA)</td>
+              <td class="border px-4 py-2 text-right">₹ {{ payroll.HRA }}</td>
+            </tr>
+            <tr>
+              <td class="border px-4 py-2">Special Allowance</td>
+              <td class="border px-4 py-2 text-right">₹ {{ payroll.Special_Allowance }}</td>
+            </tr>
+            <tr>
+              <td class="border px-4 py-2">LTA</td>
+              <td class="border px-4 py-2 text-right">₹ {{ payroll.LTA }}</td>
+            </tr>
+            <tr>
+              <td class="border px-4 py-2">Retention Bonus</td>
+              <td class="border px-4 py-2 text-right">₹ {{ payroll.Retention_Bonus }}</td>
+            </tr>
+            <tr>
+              <td class="border px-4 py-2">Mobile & Internet Allowance</td>
+              <td class="border px-4 py-2 text-right">₹ {{ payroll.Mobile_Internet_Allowance }}</td>
+            </tr>            
+            <tr>
+              <td class="border px-4 py-2">Professional Development Allowance</td>
+              <td class="border px-4 py-2 text-right">₹ {{ payroll.Professional_Development_Allowance }}</td>
+            </tr>
+            <tr>
+              <td class="border px-4 py-2">Office Attire Allowance</td>
+              <td class="border px-4 py-2 text-right">₹ {{ payroll.Office_Attire }}</td>
+            </tr>
+            <tr>
+              <td class="border px-4 py-2">Other Allowance</td>
+              <td class="border px-4 py-2 text-right">₹ {{ payroll.Other_Allowance }}</td>
+            </tr>
+            <tr>
+              <td class="border px-4 py-2">Additional Payments</td>
+              <td class="border px-4 py-2 text-right">₹ {{ payroll.Additional_Payments }}</td>
+            </tr>
+            <tr>
+              <td class="border px-4 py-2">Additional Payment / Bonus</td>
+              <td class="border px-4 py-2 text-right">₹ {{ payroll.Additional_Payment_Bonus }}</td>
+            </tr>
+            <!-- Blank rows to ensure Gross Earnings is at the bottom -->
+            <tr><td class="border px-4 py-2">&nbsp;</td><td class="border px-4 py-2">&nbsp;</td></tr>
+            <tr><td class="border px-4 py-2">&nbsp;</td><td class="border px-4 py-2">&nbsp;</td></tr>
+            <tr><td class="border px-4 py-2">&nbsp;</td><td class="border px-4 py-2">&nbsp;</td></tr>
+            <tr><td class="border px-4 py-2">&nbsp;</td><td class="border px-4 py-2">&nbsp;</td></tr>
+            <tr>
+              <th class="text-left border px-4 py-2">Gross Earnings</th>
+              <td class="border px-4 py-2 text-right">₹ {{ payroll.GROSS_EARNING }}</td>
+            </tr>
+          </tbody>
+        </table>
+        
+        <!-- Deductions -->
+        <table class="min-w-full bg-white border rounded">
+          <thead>
+            <tr>
+              <th colspan="2" class="text-left border px-4 py-2">Deductions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="border px-4 py-2">PF</td>
+              <td class="border px-4 py-2 text-right">₹ {{ payroll.PF }}</td>
+            </tr>
+            <tr>
+              <td class="border px-4 py-2">VPF</td>
+              <td class="border px-4 py-2 text-right">₹ {{ payroll.VPF }}</td>
+            </tr>
+            <tr>
+              <td class="border px-4 py-2">LWF</td>
+              <td class="border px-4 py-2 text-right">₹ {{ payroll.LWF }}</td>
+            </tr>
+            <tr>
+              <td class="border px-4 py-2">PT</td>
+              <td class="border px-4 py-2 text-right">₹ {{ payroll.PT }}</td>
+            </tr>
+            <tr>
+              <td class="border px-4 py-2">LWF Arrears deduction</td>
+              <td class="border px-4 py-2 text-right">₹ {{ payroll.LWF_Arrears_Deduction }}</td>
+            </tr>
+            <tr>
+              <td class="border px-4 py-2">Other Deduction</td>
+              <td class="border px-4 py-2 text-right">₹ {{ payroll.Other_Deductions }}</td>
+            </tr>
+            <tr>
+              <td class="border px-4 py-2">TDS</td>
+              <td class="border px-4 py-2 text-right">₹ {{ payroll.TDS }}</td>
+            </tr>
+            <!-- Blank rows to ensure Gross Deductions is at the bottom -->
+            <tr><td class="border px-4 py-2">&nbsp;</td><td class="border px-4 py-2">&nbsp;</td></tr>
+            <tr><td class="border px-4 py-2">&nbsp;</td><td class="border px-4 py-2">&nbsp;</td></tr>
+            <tr><td class="border px-4 py-2">&nbsp;</td><td class="border px-4 py-2">&nbsp;</td></tr>
+            <tr><td class="border px-4 py-2">&nbsp;</td><td class="border px-4 py-2">&nbsp;</td></tr>
+            <tr>
+              <th class="text-left border px-4 py-2">Gross Deductions</th>
+              <td class="border px-4 py-2 text-right">₹ {{ payroll.GROSS_DEDUCTION }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="mt-8">
+        <h3 class="text-lg font-medium mb-2"><i class="fas fa-money-bill-wave"></i> Net Pay</h3>
+        <ul class="list-none">
+          <li class="flex justify-between items-center">
+            <span>Gross Earnings</span>
+            <span class="font-bold">₹ {{ payroll.GROSS_EARNING }}</span>
+          </li>
+          <li class="flex justify-between items-center mt-2">
+            <span>Gross Deductions</span>
+            <span class="font-bold">- ₹ {{ payroll.GROSS_DEDUCTION }}</span>
+          </li>
+          <li class="flex justify-between items-center mt-4 text-green-500 font-bold">
+            <span>Net Pay</span>
+            <span>₹ {{ payroll.Net_Pay }}</span>
+          </li>
+          <li class="flex justify-between items-center mt-2">
+            <span>Net Pay (In Words):</span>
+            <span class="font-bold">{{ payroll.Net_Pay_In_Words }}</span>
+          </li>
+        </ul>
+        <p class="text-sm text-gray-500 mt-4">This is a computer-generated salary slip. Does not require a Signature.</p>
+      </div>
+    </div>
+    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mt-8" id="print-payslip">
+      <i class="fas fa-print"></i> Print Payslip
+    </button>
+  </div>
+
+  <script>
+    document.getElementById('print-payslip').addEventListener('click', function() {
+      window.print();
+    });
+  </script>
+  <!-- Debugging statements -->
+  <!-- Add these lines to display the employee and payroll data -->
+  <!-- {{ employee }}  -->
+  <!-- {{ payroll }}  -->    <!-- these lines are used to see whether the required data are fectched correctly from database -->
+</body>
+</html>
+
+

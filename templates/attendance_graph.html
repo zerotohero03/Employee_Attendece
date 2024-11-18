@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance Graph</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <h1>Attendance Graph</h1>
+    <canvas id="attendanceChart" width="800" height="400"></canvas>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+    var ctx = document.getElementById('attendanceChart').getContext('2d');
+    var labels = [];
+    var data = [];
+    var backgroundColor = [];
+
+    // Extracting data from Flask variable
+    var attendance_data = {{ attendance_data | tojson }};
+
+    // Processing attendance data
+    attendance_data.forEach(function(entry) {
+        labels.push(entry.date);
+        data.push(entry.status === 'Present' ? 1 : 0); // Assuming 1 for present and 0 for absent
+        backgroundColor.push(entry.status === 'Present' ? 'green' : 'red'); // Green for present, red for absent
+    });
+
+    var chart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Attendance Status',
+                data: data,
+                backgroundColor: backgroundColor,
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+});
+        document.addEventListener('DOMContentLoaded', function() {
+            var ctx = document.getElementById('attendanceChart').getContext('2d');
+            var labels = [];
+            var data = [];
+            var backgroundColor = [];
+
+            // Extracting data from Flask variable
+            var attendance_data = {{ attendance_data | tojson }};
+
+            // Processing attendance data
+            attendance_data.forEach(function(entry) {
+                labels.push(entry.date);
+                data.push(entry.status === 'Present' ? 1 : 0); // Assuming 1 for present and 0 for absent
+                backgroundColor.push(entry.status === 'Present' ? 'green' : 'red'); // Green for present, red for absent
+            });
+
+            var chart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Attendance Status',
+                        data: data,
+                        backgroundColor: backgroundColor,
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

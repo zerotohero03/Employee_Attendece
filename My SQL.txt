@@ -1,0 +1,10 @@
+ User - root
+ My root pass - 1234
+
+
+
+
+  host='127.0.0.1',
+        user='root',
+        password='haramikutaA1@',
+        database='Payroll_db'

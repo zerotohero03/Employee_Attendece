@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Employees</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 0;
+        }
+        .navbar {
+            background-color: #343a40;
+            color: #fff;
+        }
+        .navbar-brand, .nav-link {
+            color: #fff;
+        }
+        .container {
+            margin-top: 20px;
+        }
+        .card {
+            margin: 15px 0;
+            border: none;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .card-header {
+            background-color: #007bff;
+            color: #fff;
+            font-size: 1.2rem;
+        }
+        .card-body {
+            padding: 15px;
+        }
+        .view-file-link {
+            color: #007bff;
+        }
+        .view-file-link:hover {
+            text-decoration: underline;
+        }
+        .modal-content {
+            background: #fff;
+            border-radius: 8px;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <a class="navbar-brand" href="#">Employee Manager</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('index') }}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Employees</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Settings</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="row">
+            <!-- Search Bar -->
+            <div class="col-12">
+                <input type="text" id="searchBar" class="form-control" placeholder="Search employees...">
+            </div>
+        </div>
+        <div class="row" id="employeeCards">
+            <!-- Employee Cards -->
+            {% for employee in employees %}
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header">
+                        {{ employee[1] }}
+                    </div>
+                    <div class="card-body">
+                        <p><strong>ID:</strong> {{ employee[0] }}</p>
+                        <p><strong>DOB:</strong> {{ employee[2] }}</p>
+                        <p><strong>Gender:</strong> {{ employee[3] }}</p>
+                        <p><strong>Email:</strong> {{ employee[9] }}</p>
+                        <a href="#" class="view-file-link" data-toggle="modal" data-target="#employeeModal" data-id="{{ employee[0] }}">View Details</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Employee Modal -->
+    <div class="modal fade" id="employeeModal" tabindex="-1" aria-labelledby="employeeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="employeeModalLabel">Employee Details</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <!-- Employee details will be loaded here via JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+    $(document).ready(function() {
+        // Filter employees based on search input
+        $('#searchBar').on('keyup', function() {
+            var value = $(this).val().toLowerCase();
+            $('#employeeCards .card').filter(function() {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+
+        // Load employee details in the modal
+        $('#employeeModal').on('show.bs.modal', function(event) {
+            var button = $(event.relatedTarget);
+            var id = button.data('id');
+            var modal = $(this);
+            // Fetch employee details from server
+            $.ajax({
+                url: '/get_employee_details/' + id,
+                method: 'GET',
+                success: function(data) {
+                    // Parse JSON response
+                    var employee = data.employee;
+                    // Construct HTML for employee details
+                    var html = '<p><strong>ID:</strong> ' + employee.id + '</p>' +
+                               '<p><strong>Name:</strong> ' + employee.name + '</p>' +
+                               '<p><strong>DOB:</strong> ' + employee.dob + '</p>' +
+                               '<p><strong>Gender:</strong> ' + employee.gender + '</p>' +
+                               '<p><strong>Address:</strong> ' + (employee.address ? employee.address : 'N/A') + '</p>' +
+                               '<p><strong>State:</strong> ' + (employee.state ? employee.state : 'N/A') + '</p>' +
+                               '<p><strong>Pincode:</strong> ' + (employee.pincode ? employee.pincode : 'N/A') + '</p>' +
+                               '<p><strong>Phone:</strong> ' + (employee.phone ? employee.phone : 'N/A') + '</p>' +
+                               '<p><strong>Alt Phone:</strong> ' + (employee.alt_phone ? employee.alt_phone : 'N/A') + '</p>' +
+                               '<p><strong>Email:</strong> ' + (employee.email ? employee.email : 'N/A') + '</p>' +
+                               '<p><strong>PAN:</strong> ' + (employee.pan ? employee.pan : 'N/A') + '</p>' +
+                               '<p><strong>Aadhar:</strong> ' + (employee.aadhar ? employee.aadhar : 'N/A') + '</p>' +
+                               '<p><strong>Employee Code:</strong> ' + (employee.employee_code ? employee.employee_code : 'N/A') + '</p>' +
+                               '<p><strong>Bank Name:</strong> ' + (employee.bank_name ? employee.bank_name : 'N/A') + '</p>' +
+                               '<p><strong>Bank:</strong> ' + (employee.bank ? employee.bank : 'N/A') + '</p>' +
+                               '<p><strong>Account:</strong> ' + (employee.account ? employee.account : 'N/A') + '</p>' +
+                               '<p><strong>IFSC:</strong> ' + (employee.ifsc ? employee.ifsc : 'N/A') + '</p>' +
+                               '<p><strong>UAN:</strong> ' + (employee.uan ? employee.uan : 'N/A') + '</p>' +
+                               '<p><strong>Experience:</strong> ' + (employee.experience ? employee.experience : 'N/A') + '</p>' +
+                               '<p><strong>Company Name:</strong> ' + (employee.company_name ? employee.company_name : 'N/A') + '</p>' +
+                               '<p><strong>Designation:</strong> ' + (employee.designation ? employee.designation : 'N/A') + '</p>' +
+                               '<p><strong>Function Performed:</strong> ' + (employee.function_performed ? employee.function_performed : 'N/A') + '</p>' +
+                               '<p><strong>Period of Work:</strong> ' + (employee.period_of_work ? employee.period_of_work : 'N/A') + '</p>' +
+                               '<p><strong>Reason for Leaving:</strong> ' + (employee.reason_for_leaving ? employee.reason_for_leaving : 'N/A') + '</p>' +
+                               '<p><strong>Aadhar Doc Path:</strong> <a href="' + (employee.aadhar_doc_path ? '/static/uploads/' + employee.aadhar_doc_path : '#') + '" target="_blank">View Aadhar Doc</a></p>' +
+                               '<p><strong>PAN Doc Path:</strong> <a href="' + (employee.pan_doc_path ? '/static/uploads/' + employee.pan_doc_path : '#') + '" target="_blank">View PAN Doc</a></p>' +
+                               '<p><strong>Bank Passbook Doc Path:</strong> <a href="' + (employee.bank_passbook_doc_path ? '/static/uploads/' + employee.bank_passbook_doc_path : '#') + '" target="_blank">View Bank Passbook Doc</a></p>' +
+                               '<p><strong>Photo Doc Path:</strong> <a href="' + (employee.photo_doc_path ? '/static/uploads/' + employee.photo_doc_path : '#') + '" target="_blank">View Photo Doc</a></p>';
+                    // Insert employee details into modal body                              (Note for self that above /static/uploads/ are added manually for it reference database path concatenated with static/uploads/employeefolder/file_name.jpg/png/etc)
+                    modal.find('.modal-body').html(html);
+                },
+                error: function(xhr, status, error) {
+                    // Display error message in modal body
+                    modal.find('.modal-body').html('<p>Error loading employee details.</p>');
+                }
+            });
+        });
+    });
+    </script>
+</body>
+</html>

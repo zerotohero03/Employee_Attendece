@@ -1,0 +1,2212 @@
+/* edit_employee.html */
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Employee</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/edit_employee.css') }}">
+</head>
+<body>
+    <h1>Edit Employee</h1>
+    <form action="{{ url_for('edit_employee', employee_id=employee['id']) }}" method="post" enctype="multipart/form-data">
+        <div>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" value="{{ employee['name'] }}" required>
+        </div>
+        <div>
+            <label for="dob">Date of Birth:</label>
+            <input type="date" id="dob" name="dob" value="{{ employee['dob'] }}" required>
+        </div>
+        <div>
+            <label for="gender">Gender:</label>
+            <select id="gender" name="gender" required>
+                <option value="Male" {% if employee['gender'] == 'Male' %}selected{% endif %}>Male</option>
+                <option value="Female" {% if employee['gender'] == 'Female' %}selected{% endif %}>Female</option>
+                <option value="Other" {% if employee['gender'] == 'Other' %}selected{% endif %}>Other</option>
+            </select>
+        </div>
+        <div>
+            <label for="address">Address:</label>
+            <input type="text" id="address" name="address" value="{{ employee['address'] }}" required>
+        </div>
+        <div>
+            <label for="state">State:</label>
+            <input type="text" id="state" name="state" value="{{ employee['state'] }}" required>
+        </div>
+        <div>
+            <label for="pincode">Pincode:</label>
+            <input type="text" id="pincode" name="pincode" value="{{ employee['pincode'] }}" required>
+        </div>
+        <div>
+            <label for="phone">Phone:</label>
+            <input type="text" id="phone" name="phone" value="{{ employee['phone'] }}" required>
+        </div>
+        <div>
+            <label for="alt_phone">Alternative Phone:</label>
+            <input type="text" id="alt_phone" name="alt_phone" value="{{ employee['alt_phone'] }}">
+        </div>
+        <div>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" value="{{ employee['email'] }}" required>
+        </div>
+        <div>
+            <label for="pan">PAN:</label>
+            <input type="text" id="pan" name="pan" value="{{ employee['pan'] }}" required>
+        </div>
+        <div>
+            <label for="aadhar">Aadhar:</label>
+            <input type="text" id="aadhar" name="aadhar" value="{{ employee['aadhar'] }}" required>
+        </div>
+        <div>
+            <label for="employee_code">Employee Code:</label>
+            <input type="text" id="employee_code" name="employee_code" value="{{ employee['employee_code'] }}" required>
+        </div>
+        <div>
+            <label for="aadhar_file">Aadhar File:</label>
+            <input type="file" id="aadhar_file" name="aadhar_file">
+            {% if employee['aadhar_path'] %}
+                <a href="{{ url_for('static', filename=employee['aadhar_path']) }}">Current File</a>
+            {% endif %}
+        </div>
+        <div>
+            <label for="pan_file">PAN File:</label>
+            <input type="file" id="pan_file" name="pan_file">
+            {% if employee['pan_path'] %}
+                <a href="{{ url_for('static', filename=employee['pan_path']) }}">Current File</a>
+            {% endif %}
+        </div>
+        <div>
+            <label for="bank_passbook_file">Bank Passbook File:</label>
+            <input type="file" id="bank_passbook_file" name="bank_passbook_file">
+            {% if employee['bank_passbook_path'] %}
+                <a href="{{ url_for('static', filename=employee['bank_passbook_path']) }}">Current File</a>
+            {% endif %}
+        </div>
+        <div>
+            <label for="profile_photo_file">Profile Photo:</label>
+            <input type="file" id="profile_photo_file" name="profile_photo_file">
+            {% if employee['profile_photo_path'] %}
+                <a href="{{ url_for('static', filename=employee['profile_photo_path']) }}">Current File</a>
+            {% endif %}
+        </div>
+        <div>
+            <label for="bank_name">Bank Name:</label>
+            <input type="text" id="bank_name" name="bank_name" value="{{ employee['bank_name'] }}" required>
+        </div>
+        <div>
+            <label for="bank">Bank:</label>
+            <input type="text" id="bank" name="bank" value="{{ employee['bank'] }}" required>
+        </div>
+        <div>
+            <label for="account">Account:</label>
+            <input type="text" id="account" name="account" value="{{ employee['account'] }}" required>
+        </div>
+        <div>
+            <label for="ifsc">IFSC:</label>
+            <input type="text" id="ifsc" name="ifsc" value="{{ employee['ifsc'] }}" required>
+        </div>
+        <div>
+            <label for="uan">UAN:</label>
+            <input type="text" id="uan" name="uan" value="{{ employee['uan'] }}" required>
+        </div>
+        <div>
+            <label for="experience">Experience:</label>
+            <textarea id="experience" name="experience" required>{{ employee['experience'] }}</textarea>
+        </div>
+        <div>
+            <label for="company_name">Company Name:</label>
+            <input type="text" id="company_name" name="company_name" value="{{ employee['company_name'] }}" required>
+        </div>
+        <div>
+            <label for="designation">Designation:</label>
+            <input type="text" id="designation" name="designation" value="{{ employee['designation'] }}" required>
+        </div>
+        <div>
+            <label for="function_performed">Function Performed:</label>
+            <textarea id="function_performed" name="function_performed" required>{{ employee['function_performed'] }}</textarea>
+        </div>
+        <div>
+            <label for="period_of_work">Period of Work:</label>
+            <input type="text" id="period_of_work" name="period_of_work" value="{{ employee['period_of_work'] }}" required>
+        </div>
+        <div>
+            <label for="reason_for_leaving">Reason for Leaving:</label>
+            <textarea id="reason_for_leaving" name="reason_for_leaving" required>{{ employee['reason_for_leaving'] }}</textarea>
+        </div>
+        <button type="submit">Update Employee</button>
+    </form>
+    <a href="{{ url_for('index') }}">Back to Employee List</a>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Employee</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/edit_employee.css') }}">
+</head>
+<body>
+    <h1>Edit Employee</h1>
+    
+    <!-- Selection Form -->
+    <form action="{{ url_for('edit_employee', employee_id=employee_id) }}">
+        <div>
+            <label for="employee_id">Select Employee:</label>
+            <select id="employee_id" name="employee_id">
+                {% for emp in employees %}
+                <option value="{{ emp['id'] }}">{{ emp['id'] }} - {{ emp['name'] }}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </form>
+
+    <!-- Editing Form -->
+    <div id="editing-form">
+        <!-- Editing fields will be populated here -->
+    </div>
+
+    <a href="{{ url_for('index') }}">Back to Home</a>
+
+    <script>
+        // Get references to the select element and the editing form container
+        const employeeSelect = document.getElementById('employee_id');
+        const editingFormContainer = document.getElementById('editing-form');
+
+        // Attach change event listener to the select element
+        employeeSelect.addEventListener('change', function() {
+            // Get the selected employee ID
+            const selectedEmployeeId = employeeSelect.value;
+
+            // Make an asynchronous request to fetch employee details
+            fetch(`/get_employee_details/${selectedEmployeeId}`)
+                .then(response => response.json())
+                .then(employee => {
+                    // Construct the form action URL
+                    const formAction = `{{ url_for('edit_employee', employee_id=${selectedEmployeeId}) }}`;
+
+                    // Populate the editing form fields with the fetched employee details
+                    editingFormContainer.innerHTML = `
+                        <h2>Edit Employee Details</h2>
+                        <form action="${formAction}" method="post" enctype="multipart/form-data">
+                            <div>
+                                <label for="name">Name:</label>
+                                <input type="text" id="name" name="name" value="${employee.name}" required>
+                            <div>
+                                <label for="name">Name:</label>
+                                <input type="text" id="name" name="name" value="${employee.name}" required>
+                            </div>
+                            <div>
+                                <label for="dob">Date of Birth:</label>
+                                <input type="date" id="dob" name="dob" value="${employee.dob}" required>
+                            </div>
+                            <div>
+                                <label for="gender">Gender:</label>
+                                <select id="gender" name="gender" required>
+                                    <option value="Male" ${employee.gender === 'Male' ? 'selected' : ''}>Male</option>
+                                    <option value="Female" ${employee.gender === 'Female' ? 'selected' : ''}>Female</option>
+                                    <option value="Other" ${employee.gender === 'Other' ? 'selected' : ''}>Other</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="address">Address:</label>
+                                <input type="text" id="address" name="address" value="${employee.address}" required>
+                            </div>
+                            <div>
+                                <label for="state">State:</label>
+                                <input type="text" id="state" name="state" value="${employee.state}" required>
+                            </div>
+                            <div>
+                                <label for="pincode">Pincode:</label>
+                                <input type="text" id="pincode" name="pincode" value="${employee.pincode}" required>
+                            </div>
+                            <div>
+                                <label for="phone">Phone:</label>
+                                <input type="text" id="phone" name="phone" value="${employee.phone}" required>
+                            </div>
+                            <div>
+                                <label for="alt_phone">Alternative Phone:</label>
+                                <input type="text" id="alt_phone" name="alt_phone" value="${employee.alt_phone}">
+                            </div>
+                            <div>
+                                <label for="email">Email:</label>
+                                <input type="email" id="email" name="email" value="${employee.email}" required>
+                            </div>
+                            <div>
+                                <label for="pan">PAN:</label>
+                                <input type="text" id="pan" name="pan" value="${employee.pan}" required>
+                            </div>
+                            <div>
+                                <label for="aadhar">Aadhar:</label>
+                                <input type="text" id="aadhar" name="aadhar" value="${employee.aadhar}" required>
+                            </div>
+                            <div>
+                                <label for="employee_code">Employee Code:</label>
+                                <input type="text" id="employee_code" name="employee_code" value="${employee.employee_code}" required>
+                            </div>
+                            <div>
+                                <label for="aadhar_file">Aadhar File:</label>
+                                <input type="file" id="aadhar_file" name="aadhar_file">
+                                ${employee.aadhar_path ? `<a href="{{ url_for('static', filename='uploads/' + employee.aadhar_path) }}" target="_blank">View current file</a>` : ''}
+                            </div>
+                            <div>
+                                <label for="pan_file">PAN File:</label>
+                                <input type="file" id="pan_file" name="pan_file">
+                                ${employee.pan_path ? `<a href="{{ url_for('static', filename='uploads/' + employee.pan_path) }}" target="_blank">View current file</a>` : ''}
+                            </div>
+                            <div>
+                                <label for="bank_passbook_file">Bank Passbook File:</label>
+                                <input type="file" id="bank_passbook_file" name="bank_passbook_file">
+                                ${employee.bank_passbook_path ? `<a href="{{ url_for('static', filename='uploads/' + employee.bank_passbook_path) }}" target="_blank">View current file</a>` : ''}
+                            </div>
+                            <div>
+                                <label for="profile_photo_file">Profile Photo:</label>
+                                <input type="file" id="profile_photo_file" name="profile_photo_file">
+                                ${employee.profile_photo_path ? `<a href="{{ url_for('static', filename='uploads/' + employee.profile_photo_path) }}" target="_blank">View current photo</a>` : ''}
+                            </div>
+                            <div>
+                                <label for="bank_name">Bank Name:</label>
+                                <input type="text" id="bank_name" name="bank_name" value="${employee.bank_name}" required>
+                            </div>
+                            <div>
+                                <label for="bank">Bank:</label>
+                                <input type="text" id="bank" name="bank" value="${employee.bank}" required>
+                            </div>
+                            <div>
+                                <label for="account">Account Number:</label>
+                                <input type="text" id="account" name="account" value="${employee.account}" required>
+                            </div>
+                            <div>
+                                <label for="ifsc">IFSC:</label>
+                                <input type="text" id="ifsc" name="ifsc" value="${employee.ifsc}" required>
+                            </div>
+                            <div>
+                                <label for="uan">UAN:</label>
+                                <input type="text" id="uan" name="uan" value="${employee.uan}" required>
+                            </div>
+                            <div>
+                                <label for="experience">Experience:</label>
+                                <input type="text" id="experience" name="experience" value="${employee.experience}" required>
+                            </div>
+                            <div>
+                                <label for="company_name">Company Name:</label>
+                                <input type="text" id="company_name" name="company_name" value="${employee.company_name}" required>
+                            </div>
+                            <div>
+                                <label for="designation">Designation:</label>
+                                <input type="text" id="designation" name="designation" value="${employee.designation}" required>
+                            </div>
+                            <div>
+                                <label for="function_performed">Function Performed:</label>
+                                <input type="text" id="function_performed" name="function_performed" value="${employee.function_performed}" required>
+                            </div>
+                            <div>
+                                <label for="period_of_work">Period of Work:</label>
+                                <input type="text" id="period_of_work" name="period_of_work" value="${employee.period_of_work}" required>
+                            </div>
+                            <div>
+                                <label for="reason_for_leaving">Reason for Leaving:</label>
+                                <input type="text" id="reason_for_leaving" name="reason_for_leaving" value="${employee.reason_for_leaving}" required>
+                            </div>
+                            <button type="submit">Update Employee</button>
+                        </form>
+                    `;
+                })
+                .catch(error => {
+                    console.error('Error fetching employee details:', error);
+                });
+        });
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Employee</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/edit_employee.css') }}">
+</head>
+<body>
+    <h1>Edit Employee</h1>
+    <form action="{{ url_for('edit_employee', employee_id=employee_id) }}" method="post" enctype="multipart/form-data">
+        <div>
+            <label for="select_employee">Select Employee ID:</label>
+            <select id="select_employee" name="select_employee" onchange="this.form.submit()">
+                <option value="" {% if not selected_employee %}selected{% endif %}>Select Employee ID</option>
+                {% for emp in employees %}
+                    <option value="{{ emp['id'] }}" {% if selected_employee and emp['id'] == selected_employee['id'] %}selected{% endif %}>{{ emp['id'] }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        {% if selected_employee %}
+            <div>
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" value="{{ selected_employee['name'] }}" required>
+            </div>
+            <div>
+                <label for="dob">Date of Birth:</label>
+                <input type="date" id="dob" name="dob" value="{{ selected_employee['dob'] }}" required>
+            </div>
+            <div>
+                <label for="gender">Gender:</label>
+                <select id="gender" name="gender" required>
+                    <option value="Male" {% if selected_employee['gender'] == 'Male' %}selected{% endif %}>Male</option>
+                    <option value="Female" {% if selected_employee['gender'] == 'Female' %}selected{% endif %}>Female</option>
+                    <option value="Other" {% if selected_employee['gender'] == 'Other' %}selected{% endif %}>Other</option>
+                </select>
+            </div>
+            <!-- Add other update fields here -->
+            <!-- Example: -->
+            <!-- <div>
+                <label for="address">Address:</label>
+                <input type="text" id="address" name="address" value="{{ selected_employee['address'] }}" required>
+            </div> -->
+            <!-- End of example -->
+            <button type="submit">Update Employee</button>
+        {% endif %}
+    </form>
+    <a href="{{ url_for('index') }}">Back to Employee List</a>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Employee</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/edit_employee.css') }}">
+    <script>
+        function updateEmployee() {
+            var selectElement = document.getElementById('select_employee');
+            var selectedValue = selectElement.options[selectElement.selectedIndex].value;
+            if (selectedValue) {
+                window.location.href = "{{ url_for('edit_employee') }}" + "?employee_id=" + selectedValue;
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Edit Employee</h1>
+    <form action="{{ url_for('edit_employee', employee_id=selected_employee['id'] if selected_employee else '') }}" method="post" enctype="multipart/form-data">
+        <div>
+            <label for="select_employee">Select Employee ID:</label>
+            <select id="select_employee" name="select_employee" onchange="updateEmployee()">
+                <option value="" {% if not selected_employee %}selected{% endif %}>Select Employee ID</option>
+                {% for emp in employees %}
+                    <option value="{{ emp['id'] }}" {% if selected_employee and emp['id'] == selected_employee['id'] %}selected{% endif %}>{{ emp['id'] }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        {% if selected_employee %}
+            <!-- Include the rest of the form fields here -->
+            <div>
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" value="{{ selected_employee['name'] }}" required>
+            </div>
+            <!-- Repeat for other fields... -->
+            <button type="submit">Update Employee</button>
+        {% endif %}
+    </form>
+    <a href="{{ url_for('index') }}">Back to Employee List</a>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+from flask import Flask, request, render_template, redirect, url_for
+
+app = Flask(__name__)
+
+@app.route('/edit_employee', methods=['GET', 'POST'])
+def edit_employee():
+    employee_id = request.args.get('employee_id')
+    selected_employee = None
+
+    if employee_id:
+        selected_employee = next((emp for emp in employees if emp['id'] == int(employee_id)), None)
+
+    if request.method == 'POST':
+        if selected_employee:
+            selected_employee['name'] = request.form['name']
+            selected_employee['dob'] = request.form['dob']
+            selected_employee['gender'] = request.form['gender']
+            selected_employee['address'] = request.form['address']
+            selected_employee['state'] = request.form['state']
+            selected_employee['pincode'] = request.form['pincode']
+            selected_employee['phone'] = request.form['phone']
+            selected_employee['alt_phone'] = request.form['alt_phone']
+            selected_employee['email'] = request.form['email']
+            selected_employee['pan'] = request.form['pan']
+            selected_employee['aadhar'] = request.form['aadhar']
+            selected_employee['employee_code'] = request.form['employee_code']
+            selected_employee['bank_name'] = request.form['bank_name']
+            selected_employee['bank'] = request.form['bank']
+            selected_employee['account'] = request.form['account']
+            selected_employee['ifsc'] = request.form['ifsc']
+            selected_employee['uan'] = request.form['uan']
+            selected_employee['experience'] = request.form['experience']
+            selected_employee['company_name'] = request.form['company_name']
+            selected_employee['designation'] = request.form['designation']
+            selected_employee['function_performed'] = request.form['function_performed']
+            selected_employee['period_of_work'] = request.form['period_of_work']
+            selected_employee['reason_for_leaving'] = request.form['reason_for_leaving']
+
+            # Handle file uploads
+            for file_field in ['aadhar_file', 'pan_file', 'bank_passbook_file', 'profile_photo_file']:
+                if file_field in request.files:
+                    file = request.files[file_field]
+                    if file.filename:
+                        filename = secure_filename(file.filename)
+                        file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+                        selected_employee[file_field.replace('_file', '_path')] = os.path.join('uploads', filename)
+
+            return redirect(url_for('edit_employee', employee_id=employee_id))
+
+    return render_template('edit_employee.html', employees=employees, selected_employee=selected_employee)
+
+if __name__ == '__main__':
+    app.run(debug=True)
+
+
+
+
+
+
+
+
+
+    @app.route('/edit_employee/', methods=['GET', 'POST'])
+def edit_employee():
+  conn = None
+  selected_employee = None  # Leave empty on initial GET request
+  flash_messages = []  # List to store flash messages
+
+  if request.method == 'POST' and 'select_employee' in request.form:
+    employee_id = int(request.form['select_employee'])
+    # Fetch employee data
+    try:
+      conn = sqlite3.connect(app.config['DATABASE'])
+      cursor = conn.cursor()
+      cursor.execute('SELECT * FROM employees WHERE id = ?', (employee_id,))
+      selected_employee = cursor.fetchone()
+    except sqlite3.Error as e:
+      print("SQLite error:", e)
+      flash_messages.append('An error occurred while retrieving employee data!')
+    finally:
+      if conn:
+        conn.close()
+
+  if request.method == 'POST' and not selected_employee:
+    flash_messages.append('Employee not found!')
+    return redirect(url_for('view_employee'))
+
+  if request.method == 'POST' and selected_employee:
+    # Retrieve form data
+    try:
+      name = request.form.get('name')  # Use get() to avoid KeyError
+      dob = request.form.get('dob')
+      gender = request.form.get('gender')
+      address = request.form.get('address')
+      state = request.form.get('state')
+      pincode = request.form.get('pincode')
+      phone = request.form.get('phone')
+      alt_phone = request.form.get('alt_phone')
+      email = request.form.get('email')
+      pan = request.form.get('pan')
+      aadhar = request.form.get('aadhar')
+      employee_code = request.form.get('employee_code')
+      aadhar_file = request.files.get('aadhar_file')
+      pan_file = request.files.get('pan_file')
+      bank_passbook_file = request.files.get('bank_passbook_file')
+      profile_photo_file = request.files.get('profile_photo_file')
+      bank_name = request.form.get('bank_name')
+      bank = request.form.get('bank')
+      account = request.form.get('account')
+      ifsc = request.form.get('ifsc')
+      uan = request.form.get('uan')
+      experience = request.form.get('experience')
+      company_name = request.form.get('company_name')
+      designation = request.form.get('designation')
+      function_performed = request.form.get('function_performed')
+      period_of_work = request.form.get('period_of_work')
+      reason_for_leaving = request.form.get('reason_for_leaving')
+    except KeyError:
+      flash_messages.append('Please fill in all required fields!')
+      return render_template('edit_employee.html', selected_employee=selected_employee, flash_messages=flash_messages)
+
+    # ... rest of your code for processing form data and updating employee
+
+    # Create employee folder if not exists
+    employee_folder = os.path.join(app.config['UPLOAD_FOLDER'], secure_filename(name))
+    if not os.path.exists(employee_folder):
+      os.makedirs(employee_folder)
+
+    # ... rest of your code for saving files and updating employee
+
+    return redirect(url_for('view_employee'))
+
+  # Fetch all employees for the employee selection dropdown
+  employees = []
+  try:
+    conn = sqlite3.connect(app.config['DATABASE'])
+    cursor = conn.cursor()
+    cursor.execute('SELECT * FROM employees')
+    employees = cursor.fetchall()
+  except sqlite3.Error as e:
+    print("SQLite error:", e)
+    flash_messages.append('An error occurred while retrieving employee list!')
+  finally:
+    if conn:
+      conn.close()
+
+  employees_dict = [{'id': row[0], 'name': row[1]} for row in employees]
+
+  return render_template('edit_employee.html', selected_employee=
+
+
+
+
+
+
+
+
+
+
+
+
+
+  /* Fancy button animation */
+.fancy-button {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease-in-out;
+}
+
+.fancy-button:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-in-out;
+}
+
+.fancy-button:hover:before {
+    transform: translateX(100%);
+}
+
+url("images/patrick-unsplash.jpg");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mark Attendance</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 500px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #333;
+        }
+        form {
+            display: grid;
+            gap: 15px;
+        }
+        label {
+            font-weight: bold;
+        }
+        select,
+        input[type="date"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            display: none; /* Initially hidden */
+        }
+        button[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        a {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #007bff;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Mark Attendance</h1>
+        <form method="POST">
+            <label for="employee_id">Employee:</label>
+            <select id="employee_id" name="employee_id" required>
+                {% for employee in employees %}
+                <option value="{{ employee[0] }}">{{ employee[1] }}</option>
+                {% endfor %}
+            </select>
+            <label for="date">Date:</label>
+            <input type="date" id="date" name="date" required>
+            <label for="status">Status:</label>
+            <select id="status" name="status" required onchange="toggleReasonBox()">
+                <option value="Present">Present</option>
+                <option value="Half Day">Half Day</option>
+                <option value="Absent">Absent</option>
+            </select>
+            <input type="text" id="reason" name="reason" placeholder="Reason for absence/half day">
+            <button type="submit">Mark Attendance</button>
+            <a href="{{ url_for('index') }}">Back to Home</a>
+        </form>
+    </div>
+    
+    <script>
+        function toggleReasonBox() {
+            var status = document.getElementById("status").value;
+            var reasonBox = document.getElementById("reason");
+            
+            if (status === "Absent" || status === "Half Day") {
+                reasonBox.style.display = "block";
+            } else {
+                reasonBox.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>View Attendance</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/view_attendance.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Attendance Report</h1>
+        <form method="POST" action="{{ url_for('view_attendance.view_attendance') }}">
+            <label for="employee_name">Employee Name:</label>
+            <input type="text" id="employee_name" name="employee_name" value="{{ selected_employee }}" placeholder="Enter employee name">
+            <select id="employee_name_dropdown" name="employee_name">
+                <option value="">All</option>
+                {% for name in employee_names %}
+                    <option value="{{ name[0] }}" {% if selected_employee == name[0] %}selected{% endif %}>{{ name[0] }}</option>
+                {% endfor %}
+            </select>
+            
+            <label for="start_date">Start Date:</label>
+            <input type="date" id="start_date" name="start_date" value="{{ start_date }}">
+            
+            <label for="end_date">End Date:</label>
+            <input type="date" id="end_date" name="end_date" value="{{ end_date }}">
+            
+            <button type="submit">Filter</button>
+        </form>
+        
+        <h2>Today's Attendance</h2>
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Date</th>
+                <th>Status</th>
+                <th>Time</th>
+            </tr>
+            {% for record in records %}
+                <tr>
+                    <td>{{ record[0] }}</td>
+                    <td>{{ record[1] }}</td>
+                    <td>{{ record[2] }}</td>
+                    <td>{{ record[3] }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+
+        <h2>Statistics (Past Month)</h2>
+        <div class="statistics">
+            {% if stats %}
+                {% for name, stat in stats.items() %}
+                    <div class="stat-box">
+                        <h3>{{ name }}</h3>
+                        <p>Present: {{ stat['Present'] }}</p>
+                        <p>Absent: {{ stat['Absent'] }}</p>
+                        <p>Half-day: {{ stat['Half-day'] }}</p>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>No statistics available.</p>
+            {% endif %}
+        </div>
+
+        <canvas id="attendanceChart"></canvas>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Attendance System</p>
+    </footer>
+
+    <script>
+        const ctx = document.getElementById('attendanceChart').getContext('2d');
+        const attendanceChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: [],
+                datasets: [{
+                    label: 'Attendance Status',
+                    data: [],
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        function updateChart() {
+            axios.get('/view_attendance/api/attendance_data')
+                .then(response => {
+                    const data = response.data;
+                    const labels = data.map(record => `${record[0]} - ${record[3]}`);
+                    const attendanceData = data.map(record => record[2]);
+
+                    attendanceChart.data.labels = labels;
+                    attendanceChart.data.datasets[0].data = attendanceData;
+                    attendanceChart.update();
+                })
+                .catch(error => {
+                    console.error('Error fetching attendance data:', error);
+                });
+        }
+
+        updateChart();
+        setInterval(updateChart, 60000); // Update every 60 seconds
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Attendance</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/view_attendance.css') }}" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const statsData = JSON.parse('{{ stats | tojson | safe }}');
+    </script>
+</head>
+<body>
+    <div class="container mt-5">
+        <a href="{{ url_for('index') }}" class="btn btn-secondary mb-3">Back</a>
+        <h1 class="text-center mb-4">View Attendance</h1>
+        <form method="POST" class="mb-4">
+            <div class="form-row align-items-end">
+                <div class="col-md-3">
+                    <label for="employee_name">Employee Name</label>
+                    <select class="form-control" id="employee_name" name="employee_name">
+                        <option value="">All</option>
+                        {% for name in employee_names %}
+                        <option value="{{ name[0] }}" {% if name[0] == selected_employee %}selected{% endif %}>{{ name[0] }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <label for="start_date">Start Date</label>
+                    <input type="date" class="form-control" id="start_date" name="start_date" value="{{ start_date }}">
+                </div>
+                <div class="col-md-3">
+                    <label for="end_date">End Date</label>
+                    <input type="date" class="form-control" id="end_date" name="end_date" value="{{ end_date }}">
+                </div>
+                <div class="col-md-2">
+                    <button type="submit" class="btn btn-primary">Filter</button>
+                </div>
+                <div class="col-md-1">
+                    <button type="submit" class="btn btn-secondary" name="clear_filters">Clear Filters</button>
+                </div>
+            </div>
+        </form>
+        
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="text-center mb-4">Attendance Statistics</h2>
+                <canvas id="attendanceChart" height="150"></canvas>
+            </div>
+        </div>
+
+        <div class="table-responsive mt-4">
+            <table class="table table-striped table-bordered">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Employee Name</th>
+                        <th>Date</th>
+                        <th>Status</th>
+                        <th>Time</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for record in records %}
+                    <tr>
+                        <td>{{ record['name'] }}</td>
+                        <td>{{ record['date'] }}</td>
+                        <td>{{ record['status'] }}</td>
+                        <td>{{ record['time'] }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="text-center mt-4">
+            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exportModal">Export to Excel</button>
+        </div>
+    </div>
+
+    <!-- Export Modal -->
+    <div class="modal fade" id="exportModal" tabindex="-1" aria-labelledby="exportModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exportModalLabel">Export Attendance Data</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="POST" action="{{ url_for('view_attendance.export_attendance') }}">
+                        <div class="form-group">
+                            <label for="export_start_date">Start Date</label>
+                            <input type="date" class="form-control" id="export_start_date" name="export_start_date" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="export_end_date">End Date</label>
+                            <input type="date" class="form-control" id="export_end_date" name="export_end_date" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Export</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const ctx = document.getElementById('attendanceChart').getContext('2d');
+            const labels = Object.keys(statsData);
+            const data = {
+                labels: labels,
+                datasets: [
+                    {
+                        label: 'Present',
+                        data: labels.map(name => statsData[name].filter(record => record.status === 'Present').length),
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Absent',
+                        data: labels.map(name => statsData[name].filter(record => record.status === 'Absent').length),
+                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                        borderColor: 'rgba(255, 99, 132, 1)',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Half-day',
+                        data: labels.map(name => statsData[name].filter(record => record.status === 'Half Day').length),
+                        backgroundColor: 'rgba(255, 206, 86, 0.2)',
+                        borderColor: 'rgba(255, 206, 86, 1)',
+                        borderWidth: 1
+                    }
+                ]
+            };
+            const config = {
+                type: 'bar',
+                data: data,
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    },
+                    plugins: {
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    const name = context.label;
+                                    const status = context.dataset.label;
+                                    const record = statsData[name].find(record => record.status === status);
+                                    return `${status}: Date - ${record.date}, Time - ${record.time}`;
+                                }
+                            }
+                        }
+                    }
+                }
+            };
+            new Chart(ctx, config);
+        });
+    </script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Route to view attendance records
+@view_attendance_blueprint.route('/view_attendance', methods=['GET', 'POST'])
+def view_attendance():
+    conn = get_db_connection()
+    cursor = conn.cursor()
+
+    # Fetch filters from request
+    employee_name = request.form.get('employee_name')
+    start_date = request.form.get('start_date')
+    end_date = request.form.get('end_date')
+
+    # Default to current date if not provided
+    if not start_date:
+        start_date = datetime.now().strftime('%Y-%m-%d')
+    if not end_date:
+        end_date = datetime.now().strftime('%Y-%m-%d')
+
+    # Check if "Clear Filters" button was clicked
+    if request.form.get('clear_filters'):
+        return redirect(url_for('view_attendance.view_attendance'))
+
+    # Prepare the base query
+    query = '''
+        SELECT employees.name, attendance.date, attendance.status, attendance.time, attendance.reason_for_absence_halfday
+        FROM attendance
+        JOIN employees ON attendance.employee_id = employees.id
+        WHERE attendance.date BETWEEN ? AND ?
+    '''
+    params = [start_date, end_date]
+
+    if employee_name:
+        query += ' AND employees.name = ?'
+        params.append(employee_name)
+
+    cursor.execute(query, params)
+    attendance_records = [row_to_dict(row) for row in cursor.fetchall()]
+
+    # Fetch employee names for the dropdown
+    cursor.execute('SELECT name FROM employees')
+    employee_names = cursor.fetchall()
+
+    # Prepare statistics data
+    stats = {}
+    for record in attendance_records:
+        name, status, _date, time, reason = record['name'], record['status'], record['date'], record['time'], record['reason_for_absence_halfday']
+        if name not in stats:
+            stats[name] = []
+        stats[name].append({'status': status, 'date': _date, 'time': time, 'reason': reason})
+
+    conn.close()
+
+    return render_template('view_attendance.html',
+                           records=attendance_records,
+                           employee_names=employee_names,
+                           stats=stats,
+                           selected_employee=employee_name,
+                           start_date=start_date,
+                           end_date=end_date)
+
+# Route to export attendance records to Excel
+@view_attendance_blueprint.route('/export_attendance', methods=['POST'])
+def export_attendance():
+    start_date = request.form.get('export_start_date')
+    end_date = request.form.get('export_end_date')
+
+    if not start_date or not end_date:
+        return redirect(url_for('view_attendance.view_attendance'))
+
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    query = '''
+        SELECT employees.name, attendance.date, attendance.status, attendance.time, attendance.reason_for_absence_halfday
+        FROM attendance
+        JOIN employees ON attendance.employee_id = employees.id
+        WHERE attendance.date BETWEEN ? AND ?
+    '''
+    params = [start_date, end_date]
+    cursor.execute(query, params)
+    attendance_records = [row_to_dict(row) for row in cursor.fetchall()]
+    conn.close()
+
+    df = pd.DataFrame(attendance_records)
+    filename = 'attendance_records.xlsx'
+    df.to_excel(filename, index=False)
+    return send_file(filename, as_attachment=True)
+
+# Route to get drill-down data
+@view_attendance_blueprint.route('/view_attendance/drilldown')
+def drilldown():
+    name = request.args.get('name')
+    status = request.args.get('status')
+
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    query = '''
+        SELECT employees.name, attendance.date, attendance.status, attendance.time, attendance.reason_for_absence_halfday
+        FROM attendance
+        JOIN employees ON attendance.employee_id = employees.id
+        WHERE employees.name = ? AND attendance.status = ?
+    '''
+    cursor.execute(query, (name, status))
+    detailed_records = [row_to_dict(row) for row in cursor.fetchall()]
+    conn.close()
+    return jsonify({'records': detailed_records})
+
+
+# Route to get updated chart data
+@view_attendance_blueprint.route('/view_attendance/update_chart_data')
+def update_chart_data():
+    employee_name = request.args.get('employee_name')
+    start_date = request.args.get('start_date')
+    end_date = request.args.get('end_date')
+
+    conn = get_db_connection()
+    cursor = conn.cursor()
+
+    # Fetch attendance records based on filters
+    query = """
+        SELECT employees.name, attendance.date, attendance.status, attendance.time, attendance.reason_for_absence_halfday
+        FROM attendance
+        JOIN employees ON attendance.employee_id = employees.id
+        WHERE attendance.date BETWEEN ? AND ?
+        AND employees.name = ?
+    """
+    params = [start_date, end_date, employee_name]
+    cursor.execute(query, params)
+    attendance_records = [row_to_dict(row) for row in cursor.fetchall()]
+
+    # Process statistics and format data for the chart
+    stats = {}
+    for record in attendance_records:
+        name, status, _date, time, reason = record['name'], record['status'], record['date'], record['time'], record['reason_for_absence_halfday']
+        if name not in stats:
+            stats[name] = []
+        stats[name].append({'status': status, 'date': _date, 'time': time, 'reason': reason})
+
+    # Calculate counts for each status
+    present_counts = []
+    absent_counts = []
+    halfday_counts = []
+    for name in stats:
+        present_counts.append(len([record for record in stats[name] if record['status'] == 'Present']))
+        absent_counts.append(len([record for record in stats[name] if record['status'] == 'Absent']))
+        halfday_counts.append(len([record for record in stats[name] if record['status'].lower() == 'half-day']))
+
+    conn.close()
+    return jsonify({
+        'datasets': [
+            {'data': present_counts},
+            {'data': absent_counts},
+            {'data': halfday_counts}
+        ]
+    })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Management Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Top Bar -->
+    <div class="bg-blue-600 p-4 flex justify-between items-center shadow-md">
+        <div class="text-white text-2xl font-bold" style="font-family: var(--header-font-family);">Employee Management Dashboard</div>
+        <div class="text-white text-lg">
+            Welcome, <span class="font-bold">{{ username }}</span>
+        </div>
+    </div>
+
+    <!-- Sidebar and Content -->
+    <div class="layout">
+        <!-- Sidebar -->
+        <div id="sidebar" class="sidebar sidebar-collapsed">
+            <nav class="nav flex flex-col">
+                <button id="toggleSidebar" class="mb-6 text-gray-300">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <a href="{{ url_for('index') }}" class="nav-link flex items-center rounded-md">
+                    <i class="fas fa-tachometer-alt"></i> <span class="nav-label">Home</span>
+                </a>
+                <a href="{{ url_for('add_employee') }}" class="nav-link flex items-center rounded-md">
+                    <i class="fas fa-user-plus"></i> <span class="nav-label">Add Employee</span>
+                </a>
+                <a href="{{ url_for('payroll.payroll_management') }}" class="nav-link flex items-center rounded-md">
+                    <i class="fas fa-dollar-sign"></i> <span class="nav-label">Payroll Management</span>
+                </a>
+                <a href="{{ url_for('view_attendance.view_attendance') }}" class="nav-link flex items-center rounded-md">
+                    <i class="fas fa-calendar-alt"></i> <span class="nav-label">View Attendance</span>
+                </a>
+                <a href="{{ url_for('edit_employee', employee_id=employee['id']) }}" class="nav-link flex items-center rounded-md">
+                    <i class="fas fa-edit"></i> <span class="nav-label">Edit Employee</span>
+                </a>
+                <a href="{{ url_for('view_employee') }}" class="nav-link flex items-center rounded-md">
+                    <i class="fas fa-users"></i> <span class="nav-label">View Employees</span>
+                </a>
+                <a href="{{ url_for('mark_attendance') }}" class="nav-link flex items-center rounded-md">
+                    <i class="fas fa-calendar-check"></i> <span class="nav-label">Mark Attendance</span>
+                </a>
+                <a href="{{ url_for('leave_request') }}" class="nav-link flex items-center rounded-md">
+                    <i class="fas fa-paper-plane"></i> <span class="nav-label">Leave Request</span>
+                </a>
+                <a href="{{ url_for('logout') }}" class="nav-link flex items-center rounded-md">
+                    <i class="fas fa-sign-out-alt"></i> <span class="nav-label">Logout</span>
+                </a>
+                <!-- Add other sidebar links here -->
+            </nav>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="bg-white p-6 rounded-md shadow-md">
+                <h2 class="text-2xl font-bold mb-4 text-blue-700" style="font-family: var(--header-font-family);">Dashboard Overview</h2>
+                <p class="text-gray-700">Welcome to the Employee Management System. Use the links on the left to navigate through the different sections of the application.</p>
+                <div class="mt-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Example Dashboard Cards -->
+                    <div class="bg-white p-4 rounded-lg shadow-lg">
+                        <h3 class="text-lg font-semibold text-blue-700">Total Employees</h3>
+                        <p class="text-gray-700 text-2xl font-bold mt-2">150</p>
+                    </div>
+                    <!-- Add other dashboard cards here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer p-4 text-center">
+        &copy; 2024 Employee Management
+    </footer>
+
+    <!-- JavaScript to Toggle Sidebar -->
+    <script>
+        document.getElementById('toggleSidebar').addEventListener('click', function() {
+            const sidebar = document.getElementById('sidebar');
+            if (sidebar.classList.contains('sidebar-collapsed')) {
+                sidebar.classList.remove('sidebar-collapsed');
+                sidebar.classList.add('sidebar-expanded');
+            } else {
+                sidebar.classList.remove('sidebar-expanded');
+                sidebar.classList.add('sidebar-collapsed');
+            }
+        });
+    </script>
+
+</body>
+</html>
+   
+\
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Employees</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            margin-top: 50px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            overflow-x: auto;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #333;
+        }
+        .view-file-link {
+            color: #007bff;
+        }
+        .view-file-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Employees</h1>
+        <table id="employeeTable" class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>DOB</th>
+                    <th>Gender</th>
+                    <th>Address</th>
+                    <th>State</th>
+                    <th>Pincode</th>
+                    <th>Phone</th>
+                    <th>Alt Phone</th>
+                    <th>Email</th>
+                    <th>PAN</th>
+                    <th>Aadhar</th>
+                    <th>Employee Code</th>
+                    <th>Bank Name</th>
+                    <th>Bank</th>
+                    <th>Account</th>
+                    <th>IFSC</th>
+                    <th>UAN</th>
+                    <th>Experience</th>
+                    <th>Company Name</th>
+                    <th>Designation</th>
+                    <th>Function Performed</th>
+                    <th>Period of Work</th>
+                    <th>Reason for Leaving</th>
+                    <th>Aadhar Doc Path</th>
+                    <th>PAN Doc Path</th>
+                    <th>Bank Passbook Doc Path</th>
+                    <th>Photo Doc Path</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for employee in employees %}
+                <tr>
+                    <td>{{ employee[0] }}</td>
+                    <td>{{ employee[1] }}</td>
+                    <td>{{ employee[2] }}</td>
+                    <td>{{ employee[3] }}</td>
+                    <td>{{ employee[4] }}</td>
+                    <td>{{ employee[5] }}</td>
+                    <td>{{ employee[6] }}</td>
+                    <td>{{ employee[7] }}</td>
+                    <td>{{ employee[8] }}</td>
+                    <td>{{ employee[9] }}</td>
+                    <td>{{ employee[10] }}</td>
+                    <td>{{ employee[11] }}</td>
+                    <td>{{ employee[12] }}</td>
+                    <td>{{ employee[18] }}</td>
+                    <td>{{ employee[19] }}</td>
+                    <td>{{ employee[20] }}</td>
+                    <td>{{ employee[21] }}</td>
+                    <td>{{ employee[22] }}</td>
+                    <td>{{ employee[23] }}</td>
+                    <td>{{ employee[24] }}</td>
+                    <td>{{ employee[25] }}</td>
+                    <td>{{ employee[26] }}</td>
+                    <td>{{ employee[27] }}</td>
+                    <td>{{ employee[28] }}</td>
+                    <td>
+                        {% if employee[13] %}
+                            <a href="{{ url_for('uploaded_file', employee_name=employee[1], filename=employee[13].split('/')[-1]) }}" target="_blank" class="view-file-link">View Aadhar</a><br>
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if employee[14] %}
+                            <a href="{{ url_for('uploaded_file', employee_name=employee[1], filename=employee[14].split('/')[-1]) }}" target="_blank" class="view-file-link">View PAN</a><br>
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if employee[15] %}
+                            <a href="{{ url_for('uploaded_file', employee_name=employee[1], filename=employee[15].split('/')[-1]) }}" target="_blank" class="view-file-link">View Bank Passbook</a><br>
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if employee[16] %}
+                            <a href="{{ url_for('uploaded_file', employee_name=employee[1], filename=employee[16].split('/')[-1]) }}" target="_blank" class="view-file-link">View Photo</a><br>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="{{ url_for('index') }}" class="btn btn-primary">Back to Home</a>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#employeeTable').DataTable();
+        });
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Attendance</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/view_attendance.css') }}" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Arial', sans-serif;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        .btn {
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        .btn:hover {
+            transform: scale(1.05);
+        }
+        h1, h2 {
+            color: #343a40;
+        }
+        .table thead {
+            background-color: #343a40;
+            color: #fff;
+        }
+        .modal-content {
+            background: #fff;
+            border-radius: 8px;
+            padding: 20px;
+        }
+        .chart-container {
+            position: relative;
+            margin: auto;
+            height: 60vh;
+            width: 80vw;
+        }
+        #attendanceChart {
+            transition: transform 0.5s;
+        }
+        #attendanceChart:hover {
+            transform: scale(1.1);
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const ctx = document.getElementById('attendanceChart').getContext('2d');
+            const statsData = JSON.parse('{{ stats | tojson | safe }}');
+            const labels = Object.keys(statsData);
+            const data = {
+                labels: labels,
+                datasets: [
+                    {
+                        label: 'Present',
+                        data: labels.map(name => statsData[name].filter(record => record.status === 'Present').length),
+                        backgroundColor: 'rgba(75, 192, 192, 0.5)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Absent',
+                        data: labels.map(name => statsData[name].filter(record => record.status === 'Absent').length),
+                        backgroundColor: 'rgba(255, 99, 132, 0.5)',
+                        borderColor: 'rgba(255, 99, 132, 1)',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Half-day',
+                        data: labels.map(name => statsData[name].filter(record => record.status === 'Half Day').length),
+                        backgroundColor: 'rgba(255, 206, 86, 0.5)',
+                        borderColor: 'rgba(255, 206, 86, 1)',
+                        borderWidth: 1
+                    }
+                ]
+            };
+            const config = {
+                type: 'bar',
+                data: data,
+                options: {
+                    animation: {
+                        duration: 2000,
+                        easing: 'easeOutBounce'
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    },
+                    plugins: {
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    const name = context.label;
+                                    const status = context.dataset.label;
+                                    const record = statsData[name].find(record => record.status === status);
+                                    return `${status}: Date - ${record.date}, Time - ${record.time}`;
+                                }
+                            }
+                        }
+                    }
+                }
+            };
+            new Chart(ctx, config);
+        });
+    </script>
+</head>
+<body>
+    <div class="container">
+        <a href="{{ url_for('index') }}" class="btn btn-secondary mb-3"><i class="fas fa-arrow-left"></i> Back</a>
+        <h1 class="text-center mb-4">View Attendance</h1>
+        <form method="POST" class="mb-4">
+            <div class="form-row align-items-end">
+                <div class="col-md-3">
+                    <label for="employee_name">Employee Name</label>
+                    <select class="form-control" id="employee_name" name="employee_name">
+                        <option value="">All</option>
+                        {% for name in employee_names %}
+                        <option value="{{ name[0] }}" {% if name[0] == selected_employee %}selected{% endif %}>{{ name[0] }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <label for="start_date">Start Date</label>
+                    <input type="date" class="form-control" id="start_date" name="start_date" value="{{ start_date }}">
+                </div>
+                <div class="col-md-3">
+                    <label for="end_date">End Date</label>
+                    <input type="date" class="form-control" id="end_date" name="end_date" value="{{ end_date }}">
+                </div>
+                <div class="col-md-2">
+                    <button type="submit" class="btn btn-primary"><i class="fas fa-filter"></i> Filter</button>
+                </div>
+                <div class="col-md-1">
+                    <button type="submit" class="btn btn-secondary" name="clear_filters"><i class="fas fa-times"></i> Clear</button>
+                </div>
+            </div>
+        </form>
+        
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="text-center mb-4">Attendance Statistics</h2>
+                <div class="chart-container">
+                    <canvas id="attendanceChart" height="150"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <div class="table-responsive mt-4">
+            <table class="table table-striped table-bordered">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Employee Name</th>
+                        <th>Date</th>
+                        <th>Status</th>
+                        <th>Time</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for record in records %}
+                    <tr>
+                        <td>{{ record['name'] }}</td>
+                        <td>{{ record['date'] }}</td>
+                        <td>{{ record['status'] }}</td>
+                        <td>{{ record['time'] }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="text-center mt-4">
+            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exportModal"><i class="fas fa-file-excel"></i> Export to Excel</button>
+        </div>
+    </div>
+
+    <!-- Export Modal -->
+    <div class="modal fade" id="exportModal" tabindex="-1" aria-labelledby="exportModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exportModalLabel">Export Attendance Data</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="POST" action="{{ url_for('view_attendance.export_attendance') }}">
+                        <div class="form-group">
+                            <label for="export_start_date">Start Date</label>
+                            <input type="date" class="form-control" id="export_start_date" name="export_start_date" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="export_end_date">End Date</label>
+                            <input type="date" class="form-control" id="export_end_date" name="export_end_date" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary"><i class="fas fa-file-export"></i> Export</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Attendance</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/view_attendance.css') }}" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Arial', sans-serif;
+        }
+
+        /* Attendance Table Styling */
+        .attendance-table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .attendance-table th, .attendance-table td {
+            text-align: left;
+            padding: 8px;
+        }
+        .attendance-table th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+        .attendance-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        /* Filter Section */
+        .filter-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .filter-section .form-group {
+            margin-bottom: 0;
+        }
+        .filter-section .form-control {
+            width: 150px;
+        }
+        .filter-section .btn-primary {
+            margin-left: 10px;
+        }
+
+        /* Chart Styling */
+        #attendanceChart {
+            width: 100%;
+            height: 400px;
+        }
+
+        /* Export Button */
+        .export-button {
+            display: inline-block;
+            margin-top: 20px;
+        }
+
+        /* Additional Styling (Optional) - Add more styles as needed */
+        .card {
+            border: none;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border-radius: 10px;
+        }
+        .card-header {
+            background-color: #f2f2f2;
+            color: #343a40;
+        }
+        .card-body {
+            padding: 20px;
+        }
+        /* Modal Styling */
+        .modal-content {
+            background: #fff;
+            border-radius: 8px;
+            padding: 20px;
+        }
+        .chart-container {
+            position: relative;
+            margin: auto;
+            height: 60vh;
+            width: 80vw;
+        }
+        #attendanceChart {
+            transition: transform 0.5s;
+        }
+        #attendanceChart:hover {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="text-center mb-0">Attendance Records</h2>
+                    </div>
+                    <div class="card-body">
+                        <!-- Filter Section -->
+                        <div class="filter-section">
+                            <div class="form-group">
+                                <label for="selected_employee">Employee:</label>
+                                <select class="form-control" id="selected_employee">
+                                    {% for name in employee_names %}
+                                    <option value="{{ name[0] }}" {% if name[0] == selected_employee %} selected {% endif %}>{{ name[0] }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="start_date">Start Date:</label>
+                                <input type="date" class="form-control" id="start_date" value="{{ start_date }}">
+                            </div>
+                            <div class="form-group">
+                                <label for="end_date">End Date:</label>
+                                <input type="date" class="form-control" id="end_date" value="{{ end_date }}">
+                            </div>
+                            <button class="btn btn-primary" onclick="filterAttendance()"><i class="fas fa-filter"></i> Filter</button>
+                            <button class="btn btn-secondary" onclick="clearFilters()"><i class="fas fa-times"></i> Clear</button>
+                        </div>
+
+                        <!-- Attendance Table -->
+                        <table class="attendance-table">
+                            <thead>
+                                <tr>
+                                    <th>Employee Name</th>
+                                    <th>Date</th>
+                                    <th>Status</th>
+                                    <th>Time</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for record in records %}
+                                <tr>
+                                    <td>{{ record['name'] }}</td>
+                                    <td>{{ record['date'] }}</td>
+                                    <td>{{ record['status'] }}</td>
+                                    <td>{{ record['time'] }}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+
+                        <!-- Chart -->
+                        <div class="mt-4 chart-container">
+                            <canvas id="attendanceChart" height="150"></canvas>
+                        </div>
+
+                        <!-- Export Button -->
+                        <div class="export-button text-center mt-4">
+                            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exportModal"><i class="fas fa-file-excel"></i> Export to Excel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Export Modal -->
+    <div class="modal fade" id="exportModal" tabindex="-1" aria-labelledby="exportModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exportModalLabel">Export Attendance Data</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="POST" action="{{ url_for('view_attendance.export_attendance') }}">
+                        <div class="form-group">
+                            <label for="export_start_date">Start Date</label>
+                            <input type="date" class="form-control" id="export_start_date" name="export_start_date" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="export_end_date">End Date</label>
+                            <input type="date" class="form-control" id="export_end_date" name="export_end_date" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary"><i class="fas fa-file-export"></i> Export</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const ctx = document.getElementById('attendanceChart').getContext('2d');
+            const statsData = JSON.parse('{{ stats | tojson | safe }}');
+            const labels = Object.keys(statsData);
+            const data = {
+                labels: labels,
+                datasets: [
+                    {
+                        label: 'Present',
+                        data: labels.map(name => statsData[name].filter(record => record.status === 'Present').length),
+                        backgroundColor: 'rgba(75, 192, 192, 0.5)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Absent',
+                        data: labels.map(name => statsData[name].filter(record => record.status === 'Absent').length),
+                        backgroundColor: 'rgba(255, 99, 132, 0.5)',
+                        borderColor: 'rgba(255, 99, 132, 1)',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Half-day',
+                        data: labels.map(name => statsData[name].filter(record => record.status === 'Half Day').length),
+                        backgroundColor: 'rgba(255, 206, 86, 0.5)',
+                        borderColor: 'rgba(255, 206, 86, 1)',
+                        borderWidth: 1
+                    }
+                ]
+            };
+            const config = {
+                type: 'bar',
+                data: data,
+                options: {
+                    animation: {
+                        duration: 2000,
+                        easing: 'easeOutBounce'
+                    },
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            grid: {
+                                display: false
+                            }
+                        },
+                        y: {
+                            beginAtZero: true,
+                            grid: {
+                                display: true,
+                                color: 'rgba(0, 0, 0, 0.1)'
+                            }
+                        }
+                    },
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            display: true,
+                            position: 'top'
+                        },
+                        title: {
+                            display: true,
+                            text: 'Attendance Summary'
+                        }
+                    }
+                }
+            };
+            const attendanceChart = new Chart(ctx, config);
+        });
+
+        function filterAttendance() {
+            const selectedEmployee = document.getElementById('selected_employee').value;
+            const startDate = document.getElementById('start_date').value;
+            const endDate = document.getElementById('end_date').value;
+            const queryParams = new URLSearchParams({
+                selected_employee: selectedEmployee,
+                start_date: startDate,
+                end_date: endDate
+            });
+            window.location.href = `/view_attendance?${queryParams.toString()}`;
+        }
+
+        function clearFilters() {
+            document.getElementById('selected_employee').value = '';
+            document.getElementById('start_date').value = '';
+            document.getElementById('end_date').value = '';
+            window.location.href = '/view_attendance';
+        }
+    </script>
+</body>
+</html>

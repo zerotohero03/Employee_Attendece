@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Generate Payslips with Progress</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>Generating Payslips</h2>
+        <div class="progress mt-3" style="height: 30px;">
+            <div id="progress-bar" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 0%;">0%</div>
+        </div>
+        <div id="status-message" class="mt-3"></div>
+    </div>
+
+    <script>
+        function updateProgress() {
+            const eventSource = new EventSource("{{ url_for('payroll.generate_payslips_progress') }}");
+
+            eventSource.onmessage = function(event) {
+                const progressBar = document.getElementById('progress-bar');
+                const progress = event.data;
+                progressBar.style.width = progress + '%';
+                progressBar.textContent = progress + '%';
+
+                if (progress == 100) {
+                    document.getElementById('status-message').innerHTML = '<div class="alert alert-success">Payslips generation completed.</div>';
+                    eventSource.close();
+                }
+            };
+
+            eventSource.onerror = function() {
+                document.getElementById('status-message').innerHTML = '<div class="alert alert-danger">An error occurred. Please try again.</div>';
+                eventSource.close();
+            };
+        }
+
+        updateProgress();
+    </script>
+</body>
+</html>

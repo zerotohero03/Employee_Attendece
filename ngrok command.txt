@@ -1,0 +1,11 @@
+
+authtoken - "2eayjSVj8A5wFpzAVPhGeQqSsia_5AyYmC8pTYUQW8D8xfDwd"
+
+# command for registration - "ngrok authtoken 2eayjSVj8A5wFpzAVPhGeQqSsia_5AyYmC8pTYUQW8D8xfDwd"
+
+
+# once registration done 
+
+# command for initialization - "ngrok http 5000" 5000 is port where your flask is listning too.
+
+# must do is keep you ngrok application in the project folder also after intilizing ngrok run your flask too.

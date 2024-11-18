@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Upload Excel with Progress</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>Upload Excel File</h2>
+        <form id="upload-form" action="{{ url_for('payroll.upload_excel') }}" method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="excel_file">Choose Excel file</label>
+                <input type="file" class="form-control" id="excel_file" name="excel_file" accept=".xlsx">
+            </div>
+            <button type="submit" class="btn btn-primary">Upload</button>
+        </form>
+        <div class="progress mt-3" style="height: 30px; display: none;">
+            <div id="progress-bar" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 0%;">0%</div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('upload-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const form = event.target;
+            const formData = new FormData(form);
+
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', form.action, true);
+
+            xhr.upload.onprogress = function(event) {
+                if (event.lengthComputable) {
+                    const percentComplete = (event.loaded / event.total) * 100;
+                    const progressBar = document.getElementById('progress-bar');
+                    progressBar.style.width = percentComplete + '%';
+                    progressBar.textContent = Math.floor(percentComplete) + '%';
+                    document.querySelector('.progress').style.display = 'block';
+                }
+            };
+
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    alert('Upload completed successfully.');
+                    window.location.href = "{{ url_for('payroll.generate_payslips') }}";
+                } else {
+                    alert('Upload failed. Please try again.');
+                }
+            };
+
+            xhr.send(formData);
+        });
+    </script>
+</body>
+</html>

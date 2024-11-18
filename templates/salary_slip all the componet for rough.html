@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payslip</title>
+  <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body>
+  <div class="container mx-auto px-4 py-8">
+    <h1 class="text-3xl font-bold mb-8">Payslip</h1>
+    <button class="px-4 py-2 bg-blue-500 text-white rounded shadow-md float-right mb-4" onclick="window.print()">Print</button>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div class="bg-gray-100 p-4 rounded-lg shadow-md">
+        <h3 class="text-lg font-medium mb-2">Employee Details</h3>
+        <ul class="list-disc ml-4">
+          <li>Name: <span class="font-bold">John Doe</span></li>
+          <li>Designation: <span class="font-bold">Software Engineer</span></li>
+          <li>Department: <span class="font-bold">Engineering</span></li>
+          <li>D.O.J: <span class="font-bold">2023-01-01</span></li>
+          <li>D.O.B: <span class="font-bold">1990-10-26</span></li>
+          <li>Gender: <span class="font-bold">Male</span></li>
+          <li>Location: <span class="font-bold">Delhi, India</span></li>
+          <li>State: <span class="font-bold">Delhi</span></li>
+          <li>Contact: <span class="font-bold">+91 1234567890</span></li>
+          <li>E-Mail: <span class="font-bold">john.doe@example.com</span></li>
+        </ul>
+      </div>
+      <div class="bg-gray-100 p-4 rounded-lg shadow-md">
+        <h3 class="text-lg font-medium mb-2">Employee Document Numbers</h3>
+        <ul class="list-disc ml-4">
+          <li>PAN: <span class="font-bold">XXXX-XXXX-XXXX</span></li>
+          <li>AADHAR: <span class="font-bold">XXXXXXXXXXXX</span></li>
+          <li>Name as per Bank: <span class="font-bold">John Doe</span></li>
+          <li>BANK NAME: <span class="font-bold">Example Bank</span></li>
+          <li>Bank Account: <span class="font-bold">XXX23623XX</span></li>
+          <li>IFSC: <span class="font-bold">XXXXYYYYZZZZ</span></li>
+          <li>UAN Number: <span class="font-bold">XXXXXXXXXXXX</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8">
+      <div class="bg-gray-100 p-4 rounded-lg shadow-md">
+        <h3 class="text-lg font-medium mb-2">Earnings</h3>
+        <ul class="list-disc ml-4">
+          <li>Basic Salary: <span class="font-bold">₹ 50,000</span></li>
+          <li>House Rent Allowance (HRA): <span class="font-bold">₹ 10,000</span></li>
+          <li>Special Allowance: <span class="font-bold">₹ 5,000</span></li>
+          <li>LTA: <span class="font-bold">₹ 3,000</span></li>
+          <li>Retention Bonus: <span class="font-bold">₹ 2,000 (if applicable)</span></li>
+          <li>Mobile & Internet Allowance: <span class="font-bold">₹ 1,000</span></li>
+          <li>Professional Development Allowance: <span class="font-bold">₹ 2,000</span></li>
+          <li>Office Attire Allowance: <span class="font-bold">₹ 1,000 (if applicable)</span></li>
+          <li>Other Allowance: <span class="font-bold">₹ - (specify allowance name and amount)</span></li>
+          <li>Additional Payments: <span class="font-bold">₹ - (specify payment name and amount)</span></li>
+          <li>Additional Payment / Bonus: <span class="font-bold">₹ - (specify bonus name and amount)</span></li>
+        </ul>
+        <h4 class="text-lg font-medium mt-4">Gross Earnings: <span class="font-bold">₹ 64,000</span></h4>
+      </div>
+      <div class="bg-gray-100 p-4 rounded-lg shadow-md">
+        <h3 class="text-lg font-medium mb-2">Deductions</h3>
+        <ul class="list-disc ml-4">
+          <li>PF: <span class="font-bold">₹ 2,000</span></li>
+          <li>VPF: <span class="font-bold">₹ 0 (Voluntary Provident Fund)</span></li>
+          <li>LWF: <span class="font-bold">₹ 1,000 (Leave Without Pay)</span></li>
+          <li>PT: <span class="font-bold">₹ 500 (Professional Tax)</span></li>
+          <li>LWF Arrears deduction: <span class="font-bold">₹ - (specify amount if applicable)</span></li>
+          <li>Other Deductions: <span class="font-bold">₹ - (specify deduction name and amount)</span></li>
+          <li>TDS: <span class="font-bold">₹ 5,000</span></li>
+        </ul>
+        <h4 class="text-lg font-medium mt-4">Gross Deductions: <span class="font-bold">₹ 8,500</span></h4>
+      </div>
+    </div>
+    <div class="bg-gray-100 p-4 mt-8 rounded-lg shadow-md">
+      <h3 class="text-lg font-medium mb-2">Net Pay</h3>
+      <ul class="list-none">
+        <li class="flex justify-between items-center">
+          <span>Gross Earnings</span>
+          <span class="font-bold">₹ 64,000</span>
+        </li>
+        <li class="flex justify-between items-center mt-2">
+          <span>Gross Deductions</span>
+          <span class="font-bold">- ₹ 8,500</span>
+        </li>
+        <li class="flex justify-between items-center mt-4 text-green-500 font-bold">
+          <span>Net Pay</span>
+          <span>₹ 55,500</span>
+        </li>
+        <li class="flex justify-between items-center mt-2">
+          <span>Net Pay (In Words):</span>
+          <span class="font-bold">Fifty Five Thousand Five Hundred Rupees Only</span>
+        </li>
+      </ul>
+      <p class="text-sm text-gray-500 mt-4">This is a computer-generated salary slip. Does not require a Signature.</p>
+    </div>
+  </div>
+</body>
+</html>
+

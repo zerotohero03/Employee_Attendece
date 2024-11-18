@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Profile</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div id="update-profile-form" class="form-container">
+            <form action="{{ url_for('update_profile') }}" method="POST" enctype="multipart/form-data">
+                <div class="form-title">Update Profile</div>
+                <input type="file" name="profile_picture" accept="image/*" onchange="previewProfilePicture(event)">
+                <input type="text" name="full_name" placeholder="Full Name" value="{{ employee['name'] }}" required>
+                <input type="email" name="email" placeholder="Email" value="{{ employee['email'] }}" required>
+                <input type="tel" name="phone" placeholder="Phone" value="{{ employee['phone'] }}" required>
+                <button type="submit" class="btn">Save Profile</button>
+            </form>
+        </div>
+    </div>
+    <script>
+        function previewProfilePicture(event) {
+            const reader = new FileReader();
+            reader.onload = function() {
+                const output = document.getElementById('profile-picture');
+                output.src = reader.result;
+            }
+            reader.readAsDataURL(event.target.files[0]);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Salary Slip</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-fvRICO+rQb4KU6TqONaT+zEjQWvctyJ4zCUSRxlwqL8PN9qGwzXLS27wONXY6+z" crossorigin="anonymous">
+</head>
+<body>
+  <div class="container mx-auto p-4">
+    <div class="salary-slip border p-4">
+      <div class="company-name text-center mb-3">
+        <img src="/static/css/images/logo.png" alt="Company Logo" style="width: 100px;"> Company Name
+      </div>
+      <div class="pay-slip-details d-flex justify-content-between mb-3">
+        <div class="details">Pay Slip for Month-Year</div>
+      </div>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th colspan="2" class="text-center">Employee Details</th>
+            <th colspan="2" class="text-center">Account Details</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Employee Code</td>
+            <td></td>
+            <td>Bank Account</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>Employee Name</td>
+            <td></td>
+            <td>IFSC</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>Designation</td>
+            <td></td>
+            <td>D.O.J</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>Department</td>
+            <td></td>
+            <td>Location</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>UAN Number</td>
+            <td></td>
+            <td>Days Payable</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>PAN</td>
+            <td></td>
+            <td>ESI Number</td>
+            <td></td>
+          </tr>
+        </tbody>
+        <thead>
+          <tr>
+            <th colspan="2" class="text-center">Earnings</th>
+            <th colspan="2" class="text-center">Deductions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Basic</td>
+            <td class="text-end">Amount</td>
+            <td>PF</td>
+            <td class="text-end">Amount</td>
+          </tr>
+          <tr>
+            <td>HRA</td>
+            <td class="text-end">Amount</td>
+            <td>VPF</td>
+            <td class="text-end">Amount</td>
+          </tr>
+          <tr>
+            <td>Special Allowance</td>
+            <td class="text-end">Amount</td>
+            <td>LWF</td>
+            <td class="text-end">Amount</td>
+          </tr>
+          <tr>
+            <td>LTA</td>
+            <td class="text-end">Amount</td>
+            <td>PT</td>
+            <td class="text-end">
+          <tr>
+            <td>Rentention Bonus</td>
+            <td class="text-end">Amount</td>
+            <td>LWF Arrears deduction</td>
+            <td class="text-end">Amount</td>
+          </tr>
+          <tr>
+            <td>Mobile & Internet Allowance</td>
+            <td class="text-end">Amount</td>
+            <td>Other Deductions (if any)</td>
+            <td class="text-end">Amount</td>
+          </tr>
+          <tr>
+            <td>Professional Development Allowance</td>
+            <td class="text-end">Amount</td>
+            <td>TDS</td>
+            <td class="text-end">Amount</td>
+          </tr>
+          <tr>
+            <td>Office Attire</td>
+            <td class="text-end">Amount</td>
+            <td></td>
+            <td class="text-end"></td>
+          </tr>
+          <tr>
+            <td>Other Allowance</td>
+            <td class="text-end">Amount</td>
+            <td>Other Allowance</td>
+            <td class="text-end">Amount</td>
+            <td></td>
+            <td class="text-end"></td>
+          </tr>
+          <tr>
+            <td>Additional Payment / Bonus</td>
+            <td class="text-end">Amount</td>
+            <td></td>
+            <td class="text-end"></td>
+          </tr>
+          <tr>
+            <th colspan="2" class="text-center">Gross Earnings</th>
+            <th colspan="2" class="text-center">Gross Deductions</th>
+          </tr>
+          <tr>
+            <th colspan="4" class="text-center">Net Payable</th>
+          </tr>
+          <tr>
+            <td colspan="4" class="net-pay text-end">Net Pay &#8377;</td>
+          </tr>
+          <tr>
+            <td colspan="4" class="net-pay-words">Net Pay In Words</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="signature text-end mb-3">
+        <p>For [Company Name]</p>
+        <p>Authorized Signatory</p>
+      </div>
+      <div class="disclaimer text-center mb-3">
+        <p>This is a computer-generated salary slip. Does not require a Signature.</p>
+      </div>
+      <button class="btn btn-primary btn-print float-end" onclick="printPage()">Print Pay Slip</button>
+    </div>
+  </div>
+
+  <script>
+    function printPage() {
+      window.print();
+    }
+  </script>
+</body>
+</html>

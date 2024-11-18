@@ -1,0 +1,215 @@
+{% extends 'base.html' %}
+
+{% block title %}Generate Payslips{% endblock %}
+
+{% block content %}
+<div class="container mx-auto p-4">
+    <div class="bg-white shadow-md rounded px-4 pt-4 pb-4 mb-4">
+        <h2 class="text-center text-2xl font-bold mb-4">Generate Payslips</h2>
+        <form action="{{ url_for('payroll.generate_payslips') }}" method="POST">
+            {% if message %}
+            <div class="alert alert-success mb-4">
+                {{ message }}
+            </div>
+            {% endif %}
+            <div class="mb-4">
+                <label for="employee_search" class="form-label">Employee Search</label>
+                <input type="text" name="employee_search" id="employee_search" class="form-control" placeholder="Enter ECode Only">
+            </div>
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary">
+                    <i class="bi bi-file-earmark-plus"></i> Generate Payslip
+                </button>
+            </div>
+        </form>
+    </div>
+
+    {% if payslip %}
+    <div class="bg-white shadow-md rounded px-4 pt-4 pb-4 mb-4">
+        <h2 class="text-center text-2xl font-bold mb-4">Payslip</h2>
+        <div class="salary-slip border p-4">
+            <div class="text-center mb-3">
+                <img src="/static/css/images/logo.png" alt="Company Logo" style="width: 100px;">
+                <h4>Company Name</h4>
+            </div>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th colspan="2" class="text-center">Employee Details</th>
+                        <th colspan="2" class="text-center">Account Details</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Employee ID</td>
+                        <td>{{ payslip.employee_id }}</td>
+                        <td>Bank Name</td>
+                        <td>{{ payslip.bank_name }}</td>
+                    </tr>
+                    <tr>
+                        <td>Name</td>
+                        <td>{{ payslip.employee_name }}</td>
+                        <td>Bank</td>
+                        <td>{{ payslip.bank }}</td>
+                    </tr>
+                    <tr>
+                        <td>Date of Birth</td>
+                        <td>{{ payslip.dob }}</td>
+                        <td>Account</td>
+                        <td>{{ payslip.account }}</td>
+                    </tr>
+                    <tr>
+                        <td>Gender</td>
+                        <td>{{ payslip.gender }}</td>
+                        <td>IFSC</td>
+                        <td>{{ payslip.ifsc }}</td>
+                    </tr>
+                    <tr>
+                        <td>Address</td>
+                        <td>{{ payslip.address }}</td>
+                        <td>UAN</td>
+                        <td>{{ payslip.uan }}</td>
+                    </tr>
+                    <tr>
+                        <td>State</td>
+                        <td>{{ payslip.state }}</td>
+                        <td>Experience</td>
+                        <td>{{ payslip.experience }}</td>
+                    </tr>
+                    <tr>
+                        <td>Pincode</td>
+                        <td>{{ payslip.pincode }}</td>
+                        <td>Company Name</td>
+                        <td>{{ payslip.company_name }}</td>
+                    </tr>
+                    <tr>
+                        <td>Phone</td>
+                        <td>{{ payslip.phone }}</td>
+                        <td>Designation</td>
+                        <td>{{ payslip.designation }}</td>
+                    </tr>
+                    <tr>
+                        <td>Alternate Phone</td>
+                        <td>{{ payslip.alt_phone }}</td>
+                        <td>Function Performed</td>
+                        <td>{{ payslip.function_performed }}</td>
+                    </tr>
+                    <tr>
+                        <td>Email</td>
+                        <td>{{ payslip.email }}</td>
+                        <td>Period of Work</td>
+                        <td>{{ payslip.period_of_work }}</td>
+                    </tr>
+                    <tr>
+                        <td>PAN</td>
+                        <td>{{ payslip.pan }}</td>
+                        <td>Reason for Leaving</td>
+                        <td>{{ payslip.reason_for_leaving }}</td>
+                    </tr>
+                    <tr>
+                        <td>Aadhar</td>
+                        <td>{{ payslip.aadhar }}</td>
+                    </tr>
+                    <tr>
+                        <td>Employee Code</td>
+                        <td>{{ payslip.employee_code }}</td>
+                    </tr>
+                </tbody>
+                <thead>
+                    <tr>
+                        <th colspan="2" class="text-center">Earnings</th>
+                        <th colspan="2" class="text-center">Deductions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Basic Salary</td>
+                        <td class="text-end">{{ payslip.basic_salary }}</td>
+                        <td>PF</td>
+                        <td class="text-end">{{ payslip.pf }}</td>
+                    </tr>
+                    <tr>
+                        <td>HRA</td>
+                        <td class="text-end">{{ payslip.hra }}</td>
+                        <td>VPF</td>
+                        <td class="text-end">{{ payslip.vpf }}</td>
+                    </tr>
+                    <tr>
+                        <td>Special Allowance</td>
+                        <td class="text-end">{{ payslip.special_allowance }}</td>
+                        <td>LWF</td>
+                        <td class="text-end">{{ payslip.lwf }}</td>
+                    </tr>
+                    <tr>
+                        <td>LTA</td>
+                        <td class="text-end">{{ payslip.lta }}</td>
+                        <td>PT</td>
+                        <td class="text-end">{{ payslip.pt }}</td>
+                    </tr>
+                    <tr>
+                        <td>Retention Bonus</td>
+                        <td class="text-end">{{ payslip.retention_bonus }}</td>
+                        <td>LWF Arrears deduction</td>
+                        <td class="text-end">{{ payslip.lwf_arrears_deduction }}</td>
+                    </tr>
+                    <tr>
+                        <td>Mobile & Internet Allowance</td>
+                        <td class="text-end">{{ payslip.mobile_internet_allowance }}</td>
+                        <td>Other Deductions (if any)</td>
+                        <td class="text-end">{{ payslip.other_deductions }}</td>
+                    </tr>
+                    <tr>
+                        <td>Professional Development Allowance</td>
+                        <td class="text-end">{{ payslip.professional_development_allowance }}</td>
+                        <td>TDS</td>
+                        <td class="text-end">{{ payslip.tds }}</td>
+                    </tr>
+                    <tr>
+                        <td>Office Attire</td>
+                        <td class="text-end">{{ payslip.office_attire }}</td>
+                    </tr>
+                    <tr>
+                        <td>Other Allowance</td>
+                        <td class="text-end">{{ payslip.other_allowance }}</td>
+                    </tr>
+                    <tr>
+                        <td>Additional Payment / Bonus</td>
+                        <td class="text-end">{{ payslip.additional_payment_bonus }}</td>
+                    </tr>
+                    <tr>
+                        <th colspan="2" class="text-center">Gross Earnings</th>
+                        <th colspan="2" class="text-center">Gross Deductions</th>
+                    </tr>
+                    <tr>
+                        <th colspan="4" class="text-center">Net Payable</th>
+                    </tr>
+                    <tr>
+                        <td colspan="4" class="text-end"><strong>Net Pay ₹{{ payslip.net_pay }}</strong></td>
+                    </tr>
+                    <tr>
+                        <td colspan="4" class="text-center">Net Pay In Words: {{ payslip.net_pay_words }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="text-end mb-3">
+                <p>For [Company Name]</p>
+                <p>Authorized Signatory</p>
+            </div>
+            <div class="text-center mb-3">
+                <p>This is a computer-generated salary slip. Does not require a Signature.</p>
+            </div>
+            <button class="btn btn-primary btn-print float-end" onclick="printPage()">
+                <i class="bi bi-printer"></i> Print Pay Slip
+            </button>
+        </div>
+    </div>
+    {% endif %}
+</div>
+
+<script>
+    function printPage() {
+        window.print();
+    }
+</script>
+{% endblock %}
+

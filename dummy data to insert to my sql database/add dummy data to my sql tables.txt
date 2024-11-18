@@ -1,0 +1,21 @@
+things to remember that first insert data to employees table and make sure that employee code matches of employees table with that of payroll table as employee code of both tables in the database employee code is a foreign key as relational reference.
+
+# dummy data for employees table.
+
+INSERT INTO Employees (Employee_Code, Employee_Name, Designation, Department, D_O_J, Company_Name, D_O_L, D_O_B, Gender, State, Contact, E_Mail, Name_as_per_Bank, Bank_Name, Location, PAN, AADHAR, Bank_Account, IFSC, UAN_Number, ESI_Number) VALUES
+('EMP001', 'John Doe', 'Software Engineer', 'IT', '2023-01-15', 'ABC Technologies', NULL, '1990-05-15', 'Male', 'Karnataka', '9876543210', 'john.doe@example.com', 'John Doe', 'XYZ Bank', 'Bangalore', 'ABCDE1234F', '123456789012', '1234567890', 'ABC1234567', '123456789012', '1234567890'),
+('EMP002', 'Jane Smith', 'HR Manager', 'Human Resources', '2022-11-20', 'XYZ Corp', NULL, '1988-08-20', 'Female', 'Maharashtra', '9876543211', 'jane.smith@example.com', 'Jane Smith', 'PQR Bank', 'Mumbai', 'FGHIJ5678G', '234567890123', '2345678901', 'PQR1234567', '234567890123', '2345678901'),
+('EMP003', 'Amit Patel', 'Finance Executive', 'Finance', '2023-03-10', '123 Solutions', NULL, '1992-04-25', 'Male', 'Gujarat', '9876543212', 'amit.patel@example.com', 'Amit Patel', 'ABC Bank', 'Ahmedabad', 'KLMNO9012H', '345678901234', '3456789012', 'XYZ1234567', '345678901234', '3456789012'),
+('EMP004', 'Priya Gupta', 'Marketing Manager', 'Marketing', '2023-02-05', 'Marketing Hub', NULL, '1991-07-12', 'Female', 'Delhi', '9876543213', 'priya.gupta@example.com', 'Priya Gupta', 'DEF Bank', 'New Delhi', 'PQRST5678I', '456789012345', '4567890123', 'MNO1234567', '456789012345', '4567890123'),
+('EMP005', 'Rahul Sharma', 'Sales Executive', 'Sales', '2023-04-01', 'Sales Pro', NULL, '1993-09-30', 'Male', 'Uttar Pradesh', '9876543214', 'rahul.sharma@example.com', 'Rahul Sharma', 'GHI Bank', 'Lucknow', 'UVWXY6789J', '567890123456', '5678901234', 'QRS1234567', '567890123456', '5678901234');
+
+
+
+# dummy data for payroll table.
+
+INSERT INTO Payroll (Employee_Code, Month, Year, WDAY, LOPD, ACTDAYS, ARRDAYS, Days_Payable, Basic, HRA, Special_Allowance, LTA, Retention_Bonus, Mobile_Internet_Allowance, Professional_Development_Allowance, Office_Attire, Other_Allowance, Additional_Payments, Additional_Payment_Bonus, PF, VPF, LWF, PT, LWF_Arrears_Deduction, Other_Deductions, TDS) VALUES
+('EMP001', 6, 2024, 26, 0, 26, 0, 26, 25000.00, 10000.00, 5000.00, 5000.00, 2000.00, 1000.00, 1500.00, 1000.00, 2000.00, 0.00, 0.00, 3000.00, 2000.00, 200.00, 150.00, 100.00, 500.00, 1500.00),
+('EMP002', 6, 2024, 26, 0, 26, 0, 26, 30000.00, 12000.00, 6000.00, 6000.00, 2500.00, 1200.00, 1800.00, 1200.00, 2500.00, 0.00, 0.00, 3500.00, 2500.00, 250.00, 200.00, 150.00, 600.00, 2000.00),
+('EMP003', 6, 2024, 26, 0, 26, 0, 26, 28000.00, 11000.00, 5500.00, 5500.00, 2200.00, 1100.00, 1600.00, 1100.00, 2200.00, 0.00, 0.00, 3200.00, 2200.00, 220.00, 180.00, 120.00, 550.00, 1800.00),
+('EMP004', 6, 2024, 26, 0, 26, 0, 26, 32000.00, 13000.00, 6500.00, 6500.00, 2800.00, 1300.00, 2000.00, 1300.00, 2800.00, 0.00, 0.00, 4000.00, 2800.00, 280.00, 220.00, 160.00, 700.00, 2200.00),
+('EMP005', 6, 2024, 26, 0, 26, 0, 26, 26000.00, 9000.00, 4500.00, 4500.00, 1800.00, 900.00, 1400.00, 900.00, 1800.00, 0.00, 0.00, 2800.00, 1800.00, 180.00, 150.00, 100.00, 450.00, 1500.00);

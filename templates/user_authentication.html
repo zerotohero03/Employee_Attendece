@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign In</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/user_auth.css') }}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+  <div class="container">
+    <h1>Sign In</h1>
+    <div id="live-clock"></div> <!-- Live clock added here -->
+    <div class="charging-cowboy">
+      <img src="path/to/charging-cowboy.gif" alt=""> <!-- note for self you can add any in commas it would reflect on pages if image is not displaying  any Charging Cowboy GIF -->
+    </div>
+    <form method="POST" action="{{ url_for('login') }}">
+      <div class="form-group">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+        <div class="input-icon">
+          <i class="fas fa-user"></i>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+        <div class="input-icon">
+          <i class="fas fa-lock"></i>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="role">Role:</label>
+        <select id="role" name="role">
+          <option value="employee">Employee</option>
+          <option value="admin">Admin</option>
+        </select>
+      </div>
+      <button type="submit" class="fancy-button">Login</button>
+      <div class="register-links">
+        <a href="{{ url_for('register_employee') }}" class="register-link">Register as Employee</a>
+        <a href="{{ url_for('register_admin') }}" class="register-link">Register as Admin</a>
+      </div>
+    </form>
+  </div>
+  <script>
+    function updateClock() {
+        const clock = document.getElementById('live-clock');
+        const now = new Date();
+        const hours = now.getHours() % 12 || 12;
+        const minutes = now.getMinutes();
+        const seconds = now.getSeconds();
+        const ampm = hours >= 12 ? 'PM' : 'AM';
+        const formattedHours = hours < 10 ? '0' + hours : hours;
+        const formattedMinutes = minutes < 10 ? '0' + minutes : minutes;
+        const formattedSeconds = seconds < 10 ? '0' + seconds : seconds;
+        clock.innerHTML = `${formattedHours}:${formattedMinutes}:${formattedSeconds} ${ampm}`;
+    }
+    setInterval(updateClock, 1000);
+  </script>
+</body>
+</html>

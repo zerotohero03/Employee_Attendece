@@ -1,0 +1,12 @@
+employee can only access employee dashboard, when he is added to the database via admin login
+
+
+
+Use this command to creat requirement.txt, it'll fetch all the pip libs installed
+
+"pip freeze > requirements.txt"
+
+
+Use this command to install the requirement.txt, apply this command in the the directory, where requirement.txt is placed.
+
+"pip install -r requirements.txt"

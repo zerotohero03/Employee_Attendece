@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Attendance</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/view_attendance.css') }}" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Arial', sans-serif;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        .btn {
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        .btn:hover {
+            transform: scale(1.05);
+        }
+        h1, h2 {
+            color: #343a40;
+        }
+        .table thead {
+            background-color: #343a40;
+            color: #fff;
+        }
+        .modal-content {
+            background: #fff;
+            border-radius: 8px;
+            padding: 20px;
+        }
+        .chart-container {
+            position: relative;
+            margin: auto;
+            height: 60vh;
+            width: 80vw;
+        }
+        #attendanceChart {
+            transition: transform 0.5s;
+        }
+        #attendanceChart:hover {
+            transform: scale(1.1);
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const ctx = document.getElementById('attendanceChart').getContext('2d');
+            const statsData = JSON.parse('{{ stats | tojson | safe }}');
+            const labels = Object.keys(statsData);
+            const data = {
+                labels: labels,
+                datasets: [
+                    {
+                        label: 'Present',
+                        data: labels.map(name => statsData[name].filter(record => record.status === 'Present').length),
+                        backgroundColor: 'rgba(75, 192, 192, 0.5)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Absent',
+                        data: labels.map(name => statsData[name].filter(record => record.status === 'Absent').length),
+                        backgroundColor: 'rgba(255, 99, 132, 0.5)',
+                        borderColor: 'rgba(255, 99, 132, 1)',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Half Day',
+                        data: labels.map(name => statsData[name].filter(record => record.status === 'Half Day').length),
+                        backgroundColor: 'rgba(255, 206, 86, 0.5)',
+                        borderColor: 'rgba(255, 206, 86, 1)',
+                        borderWidth: 1
+                    }
+                ]
+            };
+            const config = {
+                type: 'bar',
+                data: data,
+                options: {
+                    animation: {
+                        duration: 2000,
+                        easing: 'easeOutBounce'
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    },
+                    plugins: {
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    const name = context.label;
+                                    const status = context.dataset.label;
+                                    const record = statsData[name].find(record => record.status === status);
+                                    return `${status}: Date - ${record.date}, Time - ${record.time}`;
+                                }
+                            }
+                        }
+                    }
+                }
+            };
+            new Chart(ctx, config);
+        });
+    </script>
+</head>
+<body>
+    <div class="container">
+        <a href="{{ url_for('index') }}" class="btn btn-secondary mb-3"><i class="fas fa-arrow-left"></i> Back</a>
+        <h1 class="text-center mb-4">View Attendance</h1>
+        <form method="POST" class="mb-4">
+            <div class="form-row align-items-end">
+                <div class="col-md-3">
+                    <label for="employee_name">Employee Name</label>
+                    <select class="form-control" id="employee_name" name="employee_name">
+                        <option value="">All</option>
+                        {% for name in employee_names %}
+                        <option value="{{ name[0] }}" {% if name[0] == selected_employee %}selected{% endif %}>{{ name[0] }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <label for="start_date">Start Date</label>
+                    <input type="date" class="form-control" id="start_date" name="start_date" value="{{ start_date }}">
+                </div>
+                <div class="col-md-3">
+                    <label for="end_date">End Date</label>
+                    <input type="date" class="form-control" id="end_date" name="end_date" value="{{ end_date }}">
+                </div>
+                <div class="col-md-2">
+                    <button type="submit" class="btn btn-primary"><i class="fas fa-filter"></i> Filter</button>
+                </div>
+                <div class="col-md-1">
+                    <button type="submit" class="btn btn-secondary" name="clear_filters"><i class="fas fa-times"></i> Clear</button>
+                </div>
+            </div>
+        </form>
+        
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="text-center mb-4">Attendance Statistics</h2>
+                <div class="chart-container">
+                    <canvas id="attendanceChart" height="150"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <div class="table-responsive mt-4">
+            <table class="table table-striped table-bordered">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Employee Name</th>
+                        <th>Date</th>
+                        <th>Status</th>
+                        <th>Time</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for record in records %}
+                    <tr>
+                        <td>{{ record['name'] }}</td>
+                        <td>{{ record['date'] }}</td>
+                        <td>{{ record['status'] }}</td>
+                        <td>{{ record['time'] }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="text-center mt-4">
+            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exportModal"><i class="fas fa-file-excel"></i> Export to Excel</button>
+        </div>
+    </div>
+
+    <!-- Export Modal -->
+    <div class="modal fade" id="exportModal" tabindex="-1" aria-labelledby="exportModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exportModalLabel">Export Attendance Data</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="POST" action="{{ url_for('view_attendance.export_attendance') }}">
+                        <div class="form-group">
+                            <label for="export_start_date">Start Date</label>
+                            <input type="date" class="form-control" id="export_start_date" name="export_start_date" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="export_end_date">End Date</label>
+                            <input type="date" class="form-control" id="export_end_date" name="export_end_date" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary"><i class="fas fa-file-export"></i> Export</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

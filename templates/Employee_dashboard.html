@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Employee Dashboard</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    .nav-link:hover {
+      background-color: #f3f4f6;
+      transition: background-color 0.3s ease;
+    }
+    .stat:hover {
+      transform: scale(1.05);
+      transition: transform 0.3s ease;
+    }
+  </style>
+</head>
+<body class="h-screen bg-gradient-to-r from-blue-500 to-purple-600 text-white">
+  <div class="container mx-auto p-4 pt-6 md:p-6 lg:p-12 flex flex-col md:flex-row">
+    <header class="sidebar w-full md:w-1/4 bg-white text-gray-800 shadow-lg rounded-lg p-6 mb-4 md:mb-0">
+      <div class="profile flex flex-col items-center">
+        <img src="{{ url_for('static', filename='uploads/' + employee['profile_photo_path']) }}" alt="Profile Picture" id="profile-picture">
+        <h2 class="text-lg font-bold" id="employee-name">{{ employee.name }}</h2>
+        <p class="text-sm text-gray-600" id="employee-id">Employee ID: {{ employee.id }}</p>
+        <p class="text-sm text-gray-600" id="employee-department">Department: {{ employee.department }}</p>
+        <p class="text-sm text-gray-600" id="employee-job-title">Job Title: {{ employee.job_title }}</p>
+      </div>
+      <nav class="nav flex flex-col mt-6">
+        <a href="{{ url_for('profile.profile') }}" class="nav-link flex items-center py-2 px-4 rounded-lg mb-2">
+          <i class="fas fa-user-edit mr-2"></i> Update Profile
+        </a>
+        <a href="{{ url_for('attendance.attendance') }}" class="nav-link flex items-center py-2 px-4 rounded-lg mb-2">
+          <i class="fas fa-calendar-check mr-2"></i> Mark Attendance
+        </a>
+        <a href="{{ url_for('attendance.attendance') }}" class="nav-link flex items-center py-2 px-4 rounded-lg mb-2">
+          <i class="fas fa-calendar-alt mr-2"></i> View Attendance
+        </a>
+        <a href="{{ url_for('leave.leave') }}" class="nav-link flex items-center py-2 px-4 rounded-lg mb-2">
+          <i class="fas fa-envelope-open-text mr-2"></i> Request Leave
+        </a>
+        <a href="{{ url_for('payroll_employee.payroll') }}" class="nav-link flex items-center py-2 px-4 rounded-lg mb-2">
+          <i class="fas fa-money-check-alt mr-2"></i> View Payroll
+        </a>
+        <a href="{{ url_for('logout') }}" class="nav-link flex items-center py-2 px-4 rounded-lg mb-2">
+          <i class="fas fa-sign-out-alt mr-2"></i> Logout
+        </a>
+      </nav>
+    </header>
+    <main class="main-content w-full md:w-3/4 bg-white text-gray-800 shadow-lg rounded-lg p-6 ml-0 md:ml-6">
+      <section class="hero flex flex-col items-center py-6">
+        <h1 class="text-3xl font-bold">Employee Dashboard</h1>
+        <p class="text-md text-gray-600">Manage your profile, attendance, leave requests, and payroll information.</p>
+      </section>
+      <section class="stats flex flex-wrap justify-around py-6">
+        <div class="stat w-full md:w-1/3 lg:w-1/4 p-6 bg-blue-100 text-blue-900 rounded-lg shadow-lg mb-4 hover:bg-blue-200">
+          <i class="fas fa-calendar-check text-3xl mb-2"></i>
+          <p class="text-lg font-semibold">Attendance: 95%</p>
+        </div>
+        <div class="stat w-full md:w-1/3 lg:w-1/4 p-6 bg-green-100 text-green-900 rounded-lg shadow-lg mb-4 hover:bg-green-200">
+          <i class="fas fa-envelope-open-text text-3xl mb-2"></i>
+          <p class="text-lg font-semibold">Leave Balance: 10 days</p>
+        </div>
+        <div class="stat w-full md:w-1/3 lg:w-1/4 p-6 bg-yellow-100 text-yellow-900 rounded-lg shadow-lg mb-4 hover:bg-yellow-200">
+          <i class="fas fa-money-check-alt text-3xl mb-2"></i>
+          <p class="text-lg font-semibold">Last Payroll: 2024-06-01</p>
+        </div>
+      </section>
+    </main>
+  </div>
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

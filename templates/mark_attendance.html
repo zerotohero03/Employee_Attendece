@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mark Attendance</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 500px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #333;
+        }
+        form {
+            display: grid;
+            gap: 15px;
+        }
+        label {
+            font-weight: bold;
+        }
+        select,
+        input[type="date"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            display: none; /* Initially hidden */
+        }
+        button[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        a {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #007bff;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Mark Attendance</h1>
+        <form method="POST">
+            <label for="employee_id">Employee:</label>
+            <select id="employee_id" name="employee_id" required>
+                {% for employee in employees %}
+                <option value="{{ employee[0] }}">{{ employee[1] }}</option>
+                {% endfor %}
+            </select>
+            <label for="date">Date:</label>
+            <input type="date" id="date" name="date" required>
+            <label for="status">Status:</label>
+            <select id="status" name="status" required onchange="toggleReasonBox()">
+                <option value="Present">Present</option>
+                <option value="Half Day">Half Day</option>
+                <option value="Absent">Absent</option>
+            </select>
+            <input type="text" id="reason" name="reason_for_absence_halfday" placeholder="Reason for absence/half day">
+            <button type="submit">Mark Attendance</button>
+            <a href="{{ url_for('index') }}">Back to Home</a>
+        </form>
+    </div>
+    
+    <script>
+        function toggleReasonBox() {
+            var status = document.getElementById("status").value;
+            var reasonBox = document.getElementById("reason");
+            
+            if (status === "Absent" || status === "Half Day") {
+                reasonBox.style.display = "block";
+            } else {
+                reasonBox.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>

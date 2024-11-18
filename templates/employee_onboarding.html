@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Onboarding</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .container {
+            margin-top: 50px;
+        }
+        .card {
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .add-btn {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1 class="mb-4">Employee Onboarding</h1>
+    <form method="POST" action="{{ url_for('payroll.employee_onboarding') }}">
+        <!-- Employee Basic Details -->
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Employee Basic Details</h5>
+                <div class="form-group">
+                    <label for="employee_id">Employee ID</label>
+                    <input type="text" class="form-control" id="employee_id" name="employee_id" required>
+                </div>
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" class="form-control" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone</label>
+                    <input type="text" class="form-control" id="phone" name="phone" required>
+                </div>
+            </div>
+        </div>
+
+        <!-- Earnings -->
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Earnings</h5>
+                <div id="earnings-container">
+                    <div class="form-group">
+                        <label for="basic_salary">Basic Salary</label>
+                        <input type="number" class="form-control" id="basic_salary" name="basic_salary" required>
+                    </div>
+                </div>
+                <button type="button" class="btn btn-primary add-btn" onclick="addField('earnings-container', 'earnings')">Add Earning</button>
+            </div>
+        </div>
+
+        <!-- Deductions -->
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Deductions</h5>
+                <div id="deductions-container">
+                    <div class="form-group">
+                        <label for="pf">PF</label>
+                        <input type="number" class="form-control" id="pf" name="pf" required>
+                    </div>
+                </div>
+                <button type="button" class="btn btn-primary add-btn" onclick="addField('deductions-container', 'deductions')">Add Deduction</button>
+            </div>
+        </div>
+
+        <!-- Employee Document Details -->
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Employee Document Details</h5>
+                <div id="documents-container">
+                    <div class="form-group">
+                        <label for="document_type">Document Type</label>
+                        <input type="text" class="form-control" id="document_type" name="document_type" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="document_number">Document Number</label>
+                        <input type="text" class="form-control" id="document_number" name="document_number" required>
+                    </div>
+                </div>
+                <button type="button" class="btn btn-primary add-btn" onclick="addField('documents-container', 'documents')">Add Document</button>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-success btn-block">Submit</button>
+    </form>
+</div>
+
+<script>
+    function addField(containerId, type) {
+        const container = document.getElementById(containerId);
+        const newField = document.createElement('div');
+        newField.className = 'form-group';
+        newField.innerHTML = `
+            <label for="${type}_new">New ${type.charAt(0).toUpperCase() + type.slice(1)}</label>
+            <input type="text" class="form-control" id="${type}_new" name="${type}_new" placeholder="Enter ${type.charAt(0).toUpperCase() + type.slice(1)} Name" required>
+            <label for="${type}_amount">Amount</label>
+            <input type="number" class="form-control" id="${type}_amount" name="${type}_amount" placeholder="Enter Amount" required>
+        `;
+        container.appendChild(newField);
+    }
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.min.js"></script>
+</body>
+</html>

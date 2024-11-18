@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payslip</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .card {
+            margin-top: 20px;
+        }
+
+        .card-header {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .card-body {
+            background-color: #f1f1f1;
+        }
+
+        .section-title {
+            color: #007bff;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        .label {
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="card shadow-lg">
+            <div class="card-header text-center">
+                <h2>Payslip</h2>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h3 class="section-title">Employee Details</h3>
+                        <p><span class="label">Employee ID:</span> {{ employee.id }}</p>
+                        <p><span class="label">Name:</span> {{ employee.name }}</p>
+                        <p><span class="label">Date of Birth:</span> {{ employee.dob }}</p>
+                        <p><span class="label">Gender:</span> {{ employee.gender }}</p>
+                        <p><span class="label">Address:</span> {{ employee.address }}</p>
+                        <p><span class="label">State:</span> {{ employee.state }}</p>
+                        <p><span class="label">Pincode:</span> {{ employee.pincode }}</p>
+                        <p><span class="label">Phone:</span> {{ employee.phone }}</p>
+                        <p><span class="label">Alternate Phone:</span> {{ employee.alt_phone }}</p>
+                        <p><span class="label">Email:</span> {{ employee.email }}</p>
+                        <p><span class="label">PAN:</span> {{ employee.pan }}</p>
+                        <p><span class="label">Aadhar:</span> {{ employee.aadhar }}</p>
+                        <p><span class="label">Employee Code:</span> {{ employee.employee_code }}</p>
+                        <p><span class="label">Bank Name:</span> {{ employee.bank_name }}</p>
+                        <p><span class="label">Bank:</span> {{ employee.bank }}</p>
+                        <p><span class="label">Account:</span> {{ employee.account }}</p>
+                        <p><span class="label">IFSC:</span> {{ employee.ifsc }}</p>
+                        <p><span class="label">UAN:</span> {{ employee.uan }}</p>
+                        <p><span class="label">Experience:</span> {{ employee.experience }}</p>
+                        <p><span class="label">Company Name:</span> {{ employee.company_name }}</p>
+                        <p><span class="label">Designation:</span> {{ employee.designation }}</p>
+                        <p><span class="label">Function Performed:</span> {{ employee.function_performed }}</p>
+                        <p><span class="label">Period of Work:</span> {{ employee.period_of_work }}</p>
+                        <p><span class="label">Reason for Leaving:</span> {{ employee.reason_for_leaving }}</p>
+                    </div>
+                    <div class="col-md-6">
+                        <h3 class="section-title">Payroll Details</h3>
+                        <p><span class="label">Basic Salary:</span> {{ payslip.basic_salary }}</p>
+                        <p><span class="label">HRA:</span> {{ payslip.hra }}</p>
+                        <p><span class="label">Special Allowance:</span> {{ payslip.special_allowance }}</p>
+                        <p><span class="label">LTA:</span> {{ payslip.lta }}</p>
+                        <p><span class="label">Retention Bonus:</span> {{ payslip.retention_bonus }}</p>
+                        <p><span class="label">Mobile & Internet Allowance:</span> {{ payslip.mobile_internet }}</p>
+                        <p><span class="label">Professional Development Allowance:</span> {{ payslip.professional_development }}</p>
+                        <p><span class="label">Office Attire Allowance:</span> {{ payslip.office_attire }}</p>
+                        <p><span class="label">Other Allowance:</span> {{ payslip.other_allowance }}</p>
+                        <p><span class="label">Additional Payment:</span> {{ payslip.additional_payment }}</p>
+                        <p><span class="label">Additional Bonus:</span> {{ payslip.additional_bonus }}</p>
+                        <p><span class="label">PF:</span> {{ payslip.pf }}</p>
+                        <p><span class="label">VPF:</span> {{ payslip.vpf }}</p>
+                        <p><span class="label">LWF:</span> {{ payslip.lwf }}</p>
+                        <p><span class="label">Professional Tax (PT):</span> {{ payslip.pt }}</p>
+                        <p><span class="label">LWF Arrears:</span> {{ payslip.lwf_arrears }}</p>
+                        <p><span class="label">Other Deductions:</span> {{ payslip.other_deductions }}</p>
+                        <p><span class="label">TDS:</span> {{ payslip.tds }}</p>
+                        <p><span class="label">Net Pay:</span> {{ payslip.net_pay }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>
