@@ -5,6 +5,6 @@
 
 
   host='127.0.0.1',
-        user='root',
-        password='haramikutaA1@',
-        database='Payroll_db'
+        user='your_userName',
+        password='your_Password',
+        database='your_DatabaseName'
